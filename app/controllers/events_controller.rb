@@ -27,6 +27,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def attend
+    @event = Event.find(params[:id])
+    current_user.attended_events << @event
+    redirect_to @event, notice: 'You are now attending this event.'
+  end
+
   private
 
   def event_params
