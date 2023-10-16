@@ -1,6 +1,11 @@
 <div class="Event">
   <h1><%= @event.name %></h1>
   <h2>Occuring on <%= @event.date %></h2>
+  <h2>Attendees:</h2><ul>
+    <% @event.attendees.each do |attendee| %>
+      <li><%= attendee.email %>
+    <% end %>
+  </ul>
 
   <% if user_signed_in? %>
     <%= form_for @event, url: attend_event_path(@event), method: :post, remote: true do |f| %>
