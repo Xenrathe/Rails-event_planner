@@ -1,0 +1,15 @@
+<div class="Adventure">
+  <h1><%= @adventure.name %></h1>
+  <h2>Occuring on <%= @adventure.date %></h2>
+  <h2>Attendees:</h2><ul>
+    <% @adventure.attendees.each do |attendee| %>
+      <li><%= attendee.email %>
+    <% end %>
+  </ul>
+
+  <% if user_signed_in? %>
+    <%= form_for @adventure, url: attend_adventure_path(@adventure), method: :post, remote: true do |f| %>
+      <%= f.submit "Attend Adventure", class: 'btn btn-primary' %>
+    <% end %>
+<% end %>
+</div>

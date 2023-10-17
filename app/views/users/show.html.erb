@@ -1,35 +1,34 @@
 <div class="User">
-  <h1>Your Events</h1>
+  <h1>Your Adventures</h1>
 
-  <h2>Created Events:</h2>
+  <h2>Created Adventures:</h2>
   <ul>
-    <% @events.each do |event|%>
-      <li> <%= event.name %>
+    <% @adventures.each do |adventure|%>
+      <li> <%= adventure.name %>
     <% end %>
   </ul>
 
-  <% past_events = [] %>
-  <% upcoming_events = [] %>
-  <% current_user.attended_events.each do |event|%>
-    <% if event.date >= Date.today %>
-      <% upcoming_events << event %>
+  <% past_adventures = [] %>
+  <% upcoming_adventures = [] %>
+  <% current_user.attended_adventures.each do |adventure|%>
+    <% if adventure.date >= Date.today %>
+      <% upcoming_adventures << adventure %>
     <% else %>
-      <% past_events << event %>
+      <% past_adventures << adventure %>
     <% end %>
   <% end %>
 
-  <h2>Your Upcoming Events:</h2>
+  <h2>Your Upcoming Adventures:</h2>
   <ul>
-    <% upcoming_events.each do |event|%>
-      <li> <%= event.name %> on <%= event.date %>
+    <% upcoming_adventures.each do |adventure|%>
+      <li> <%= adventure.name %> on <%= adventure.date %>
     <% end %>
   </ul>
 
-
-  <h2>Your Past Events:</h2>
+  <h2>Your Past Adventures:</h2>
   <ul>
-    <% past_events.each do |event|%>
-      <li> <%= event.name %> on <% event.date %>
+    <% past_adventures.each do |adventure|%>
+      <li> <%= adventure.name %> on <% adventure.date %>
     <% end %>
   </ul>
 </div>

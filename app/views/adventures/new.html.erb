@@ -1,7 +1,7 @@
-<div class="Events">
-  <h1>Create a New Event</h1>
+<div class="Adventures">
+  <h1>Create a New Adventure</h1>
 
-  <%= form_for @event do |f| %>
+  <%= form_for @adventure do |f| %>
     <div class="form-group">
       <%= f.label :name, class: 'form-label' %>
       <%= f.text_field :name, class: 'form-control', required: true %>
@@ -14,11 +14,11 @@
 
     <div class="form-group">
       <%= f.label :event_type, class: 'form-label' %>
-      <%= f.select :event_type, Event.event_types.keys, {}, class: 'form-control', required: true %>
+      <%= f.select :event_type, Adventure.event_types.keys, {}, class: 'form-control', required: true %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Create Event", class: 'btn btn-primary' %>
+      <%= f.submit "Create Adventure", class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>

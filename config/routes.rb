@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :events, only: [:index, :new, :create, :show] do
+  resources :adventures, only: [:index, :new, :create, :show] do
     member do
       post 'attend'
     end
@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   # Defines the root path route ("/")
-  root "events#index"
+  root "adventures#index"
 end
