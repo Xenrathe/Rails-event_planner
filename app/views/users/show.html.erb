@@ -3,32 +3,32 @@
 
   <h2>Created Adventures:</h2>
   <ul>
-    <% @adventures.each do |adventure|%>
+    <% @owned_adventures.each do |adventure|%>
       <li> <%= adventure.name %>
     <% end %>
   </ul>
 
-  <% past_adventures = [] %>
-  <% upcoming_adventures = [] %>
-  <% current_user.attended_adventures.each do |adventure|%>
-    <% if adventure.date >= Date.today %>
-      <% upcoming_adventures << adventure %>
+  <% past_attendances = [] %>
+  <% upcoming_attendances = [] %>
+  <% @attended_adventures.each do |attendance|%>
+    <% if attendance.adventure.date >= Date.today %>
+      <% upcoming_attendances << attendance %>
     <% else %>
-      <% past_adventures << adventure %>
+      <% past_attendances << attendance %>
     <% end %>
   <% end %>
 
   <h2>Your Upcoming Adventures:</h2>
   <ul>
-    <% upcoming_adventures.each do |adventure|%>
-      <li> <%= adventure.name %> on <%= adventure.date %>
+    <% upcoming_attendances.each do |attendance|%>
+      <li> <%= attendance.adventure.name %> on <%= attendance.adventure.date %>, character: <%= attendance.character.name %>
     <% end %>
   </ul>
 
   <h2>Your Past Adventures:</h2>
   <ul>
-    <% past_adventures.each do |adventure|%>
-      <li> <%= adventure.name %> on <% adventure.date %>
+    <% past_attendances.each do |attendance|%>
+      <li> <%= attendance.adventure.name %> on <% attendance.adventure.date %>, character: <%= attendance.character.name %>
     <% end %>
   </ul>
 </div>

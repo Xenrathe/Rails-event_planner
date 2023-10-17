@@ -15,14 +15,9 @@ class Adventure < ApplicationRecord
     user.active_character.min_level, 
     user.active_character.max_level) }
   scope :open, lambda {
-    joins(:attendees)
-      .group('adventures.id')
+    left_joins(:adventure_attendances)
+      .group(:id)
       .having('COUNT(adventure_attendances.id) < adventures.max_seats')
-  }
-  scope :full, lambda {
-    joins(:attendees)
-      .group('adventures.id')
-      .having('COUNT(adventure_attendances.id) = adventures.max_seats')
   }
   scope :virtual, -> { where('platform > ?', 2) }
   scope :in_person, -> { where('platform <= ?', 2) }
