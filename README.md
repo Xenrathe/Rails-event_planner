@@ -1,13 +1,5 @@
 # README
 
-## Model To-do
-* User model, adds birthdate column, username column, and bio column
-* Character model, which contains attributes: Name, Race, Class, Level, Gender, Backstory/notes, Ruleset
-* A USER can have many characters (character belongs_to user)
-* Adventure model contains attributes: Name, Ruleset, Module, Description, MaxSeats, Platform, Date/Time, Min Age, Min Level, Max Level, Address, and boolean for Private/Public.
-* Enum for Ruleset
-* An ADVENTURE can have many characters, INSTEAD of Users. It also has ONE GM, which MUST be the Adventure creator
-
 ## View to-do
 * Adventure INTRO is the 'main page.' It features an Innkeeper, a small 'upcoming' events, links to everything else.
 * Adventure INDEX lists all adventures, with filters for past/upcoming, all/my-character-rulesets/X ruleset, All/Open, MinLvl, MaxLvl. Also a button for "compatible with current character."

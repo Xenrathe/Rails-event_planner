@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  race: MyString
+  class: MyString
+  level: 1
+  gender: 1
+  backstory: MyText
+  ruleset: 1
+
+two:
+  name: MyString
+  race: MyString
+  class: MyString
+  level: 1
+  gender: 1
+  backstory: MyText
+  ruleset: 1
