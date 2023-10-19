@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
 
+  resources :characters, only: [:show, :new, :create, :edit, :update]
+
   # Defines the root path route ("/")
   root "adventures#index"
 end

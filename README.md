@@ -7,7 +7,6 @@
 * User SHOW shows age, username, bio, email, character list, past GM'd and attended events. If this is the user's page, then also shows Delete User, Create New Character, Edit Bio, and upcoming events.
 * User/Registration NEW has a better form and updated for new info
 * Character SHOW shows all Character model info
-* Character NEW/EDIT allows creating a new character or editing an old one
 
 ## View Styling / Presentation
 * Adventure New styling

@@ -1,0 +1,45 @@
+  <%= form_for @character do |f| %>
+
+    <div class="field">
+      <%= f.label :ruleset %>
+      <%= f.select :ruleset, Character.rulesets.keys %>
+    </div>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :gender %>
+      <%= f.select :gender, Character.genders.keys %>
+    </div>
+
+    <div class="field">
+      <%= f.label :race %>
+      <%= f.text_field :race %>
+    </div>
+
+    <div class="field">
+      <%= f.label :character_class %>
+      <%= f.text_field :character_class %>
+    </div>
+
+    <div class="field">
+      <%= f.label :level %>
+      <%= f.number_field :level, min: 0, max: 99 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :backstory %>
+      <%= f.text_area :backstory %>
+    </div>
+
+    <div class="actions">
+      <% if base_action == 'new'%>
+        <%= f.submit "Create Character" %>
+      <% else %>
+        <%= f.submit "Edit Character" %>
+      <% end %>
+    </div>
+  <% end %>
