@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :adventures, foreign_key: :creator_id
   has_many :characters
-  has_one :active_character, class_name: 'Character', foreign_key: 'user_id', dependent: :nullify
+  has_one :active_character, class_name: 'Character', foreign_key: :active_user_id
 end

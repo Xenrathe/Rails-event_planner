@@ -28,7 +28,6 @@ class CharactersController < ApplicationController
 
   def new
     if current_user
-      Rails.logger.debug("Current user is " + current_user.email)
       @character = current_user.characters.build()
     end
   end
@@ -37,10 +36,22 @@ class CharactersController < ApplicationController
     @character = current_user.characters.build(character_params) if current_user
     
     if @character.save
+      @character.active_character = @character if current_user.active_character.nil?
       redirect_to character_path(@character)
     else
       flash[:alert] = "Error saving new character."
       render 'new'
+    end
+  end
+
+  def set_active
+    @character = Character.find(params[:id])
+    if current_user&.characters&.include?(@character)
+      current_user.active_character = @character
+      redirect_to user_path(current_user)
+    else
+      flash[:alert] = "Cannot change another user's active char"
+      redirect_to user_path(current_user), status: :unprocessable_entity
     end
   end
 

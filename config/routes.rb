@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
 
-  resources :characters, only: [:show, :new, :create, :edit, :update]
+  resources :characters, only: [:show, :new, :create, :edit, :update] do
+    member do
+      patch 'set_active'
+    end
+  end
 
   # Defines the root path route ("/")
   root "adventures#index"

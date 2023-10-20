@@ -1,6 +1,6 @@
 <div class="Show Character">
   <h2> <%= @character.name %> </h2>
-  <% ruleset_image = case @character.ruleset.to_i
+  <% ruleset_image = case Character.rulesets[@character.ruleset]
     when 0, 1
       "Logos/dungeonsanddragons.jpg"
     when 2

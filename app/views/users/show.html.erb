@@ -1,5 +1,5 @@
 <div class="User">
-  <h1>Your Adventures</h1>
+  <h1><%= @user.username %>'s Adventures</h1>
 
   <h2>Created Adventures:</h2>
   <ul>
@@ -18,17 +18,29 @@
     <% end %>
   <% end %>
 
-  <h2>Your Upcoming Adventures:</h2>
+  <h2>Upcoming Adventures:</h2>
   <ul>
     <% upcoming_attendances.each do |attendance|%>
       <li> <%= attendance.adventure.name %> on <%= attendance.adventure.date %>, character: <%= attendance.character.name %>
     <% end %>
   </ul>
 
-  <h2>Your Past Adventures:</h2>
+  <h2>Past Adventures:</h2>
   <ul>
     <% past_attendances.each do |attendance|%>
       <li> <%= attendance.adventure.name %> on <% attendance.adventure.date %>, character: <%= attendance.character.name %>
+    <% end %>
+  </ul>
+
+  <h2><%= @user.username %>'s Characters</h2>
+  <ul>
+    <% @characters.each do |character|%>
+      <li> <%= link_to character.name, character_path(character) %>: A level <%= character.level %> <%= character.gender %> <%= character.race %> <%= character.character_class %> (<%= character.ruleset %>)
+      <% if character == @active_character %>
+        [active]
+      <% else %>
+        <%= link_to "[set active]", set_active_character_path(character), method: :patch, data: { turbo_method: :patch } %>
+      <% end %>
     <% end %>
   </ul>
 </div>
