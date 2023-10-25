@@ -7,8 +7,10 @@ Rails.application.routes.draw do
       post 'attend'
     end
   end
+
+  get 'adventures/intro', to: 'adventures#intro'
   
-  resources :users, only: [:show]
+  resources :users, only: [:show, :update]
 
   resources :characters, only: [:show, :new, :create, :edit, :update] do
     member do
@@ -17,5 +19,5 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root "adventures#index"
+  root "adventures#intro"
 end

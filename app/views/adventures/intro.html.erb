@@ -1,0 +1,36 @@
+<div class="adventure">
+  <div class="top-links">
+    <%= link_to "Adventures", adventures_path %>
+    <% if user_signed_in? %>
+      <%= link_to "User Page", user_path(current_user) %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to sign out?' } %>
+    <% else %>
+      <%= link_to "Sign in/New user", new_user_session_path %>
+    <% end %>
+  </div>
+
+  <div class="text-intro">
+    <h1>Welcome to the Adventure Inn</h1>
+    <p>Discover exciting adventures and create memorable stories with fellow travelers.</p>
+  </div>
+
+  <div class="left">
+    <%= image_tag "tavernkeeper_pixel.jpeg", alt: "Tavernkeeper Image", class: "innkeeper" %>
+  </div>
+
+  <div class="upcoming-adventures">
+    <h2>Upcoming Adventures</h2>
+    <ul>
+      <% @adventures.each do |adventure| %>
+        <li>
+            <h4><%= link_to adventure.name, adventure_path(adventure) %></h4>
+            <p>Date: <%= adventure.date %></p>
+            <p>Ruleset: <%= adventure.ruleset %></p>
+            <p>For levels: <%= adventure.min_level %> to <%= adventure.max_level %></p>
+            <p>Hosted by <%= adventure.creator.username %> <% if Adventure.platforms[adventure.platform] > 2 %>virtually<% else %>in-person<% end %></p>              
+        </li>
+      <% end %>
+        <li> <h4><%= link_to "Find more!", adventures_path %></h4>
+    </ul>
+  </div>
+</div>

@@ -26,4 +26,11 @@
   <%= image_tag ruleset_image, size: "400x200", alt: "Ruleset Logo" %>
   <h3>A level <%= @character.level %> <%= @character.gender %> <%= @character.race %> <%= @character.character_class %> </h3>
   <p> <%= @character.backstory %>
+
+  <h2>Adventures</h2>
+  <ul>
+  <% @character.attended_adventures.order(date: :desc).each do |adventure| %>
+    <li> <%= adventure.name %> on <%= adventure.date %>
+  <% end %>
+  </ul>
 </div>

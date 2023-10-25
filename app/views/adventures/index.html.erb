@@ -1,4 +1,4 @@
-<div class="Adventure">
+<div class="adventure">
   <div class="top-links">
     <%= link_to "Create Adventure", new_adventure_path %>
     <% if user_signed_in? %>
@@ -32,6 +32,13 @@
         <%= text_field_tag 'max_level', params[:max_level], class: 'form-control', placeholder: 'Max Level' %>
       </div>
 
+      <% if current_user && current_user.active_character.present? %>
+        <div class="form-group">
+          <%= label_tag :match_active_character, "Match Active Char" %>
+          <%= check_box_tag :match_active_character, params[:match_active_character] %>
+        </div>
+      <% end %>
+
       <%= submit_tag 'Apply Filters', class: 'btn btn-primary' %>
     <% end %>
   </div>
@@ -39,7 +46,7 @@
   <h1>Adventures</h1>
 
   <ul>
-    <% @adventures_test.each do |adventure|%>
+    <% @adventures.each do |adventure|%>
       <li> <%= link_to adventure.name, adventure_path(adventure) %>
     <% end %>
   </ul>

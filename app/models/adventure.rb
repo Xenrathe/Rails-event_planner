@@ -9,11 +9,14 @@ class Adventure < ApplicationRecord
   scope :upcoming, -> { where('date >= ?', DateTime.now) }
   scope :by_ruleset, -> (ruleset) { where('ruleset = ?', ruleset) }
   scope :by_level_range, ->(min_lvl, max_lvl) { where('min_level >= ? AND max_level <= ?', min_lvl, max_lvl) }
-  scope :compatible_with_active_character, lambda  { |user| 
-    where('ruleset = ? AND min_level <= ? AND max_level >= ?', 
-    user.active_character.ruleset, 
-    user.active_character.min_level, 
-    user.active_character.max_level) }
+  scope :compatible_with_active_character, lambda  { |user|
+    if user.active_character.present?
+      where('ruleset = ? AND min_level <= ? AND max_level >= ?', 
+      Character.rulesets[user.active_character.ruleset], 
+      user.active_character.level, 
+      user.active_character.level) 
+    end
+  }
   scope :open, lambda {
     left_joins(:adventure_attendances)
       .group(:id)

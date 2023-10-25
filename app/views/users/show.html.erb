@@ -1,5 +1,21 @@
 <div class="User">
-  <h1><%= @user.username %>'s Adventures</h1>
+  <h1> <%= @user.username %> </h1>
+
+  <h2>Bio</h2>
+  <% if current_user && current_user.id == @user.id %>
+    <%= form_for @user, url: { action: "update" }, method: :patch do |f| %>
+      <div class="field">
+        <%= f.text_area :bio, value: @user.bio %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Update" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p><%= @user.bio %></p>
+  <% end %>
+
+  <h2><%= @user.username %>'s Adventures</h2>
 
   <h2>Created Adventures:</h2>
   <ul>
@@ -32,7 +48,10 @@
     <% end %>
   </ul>
 
-  <h2><%= @user.username %>'s Characters</h2>
+  <h2><%= @user.username %>'s Characters
+  <% if current_user && current_user.id == @user.id %>
+    <%= link_to "(New Character)", new_character_path %>
+  <% end %></h2>
   <ul>
     <% @characters.each do |character|%>
       <li> <%= link_to character.name, character_path(character) %>: A level <%= character.level %> <%= character.gender %> <%= character.race %> <%= character.character_class %> (<%= character.ruleset %>)
@@ -43,4 +62,9 @@
       <% end %>
     <% end %>
   </ul>
+
+  <% if current_user && current_user.id == @user.id %>
+    <%= link_to 'DELETE ACCOUNT', registration_path(current_user), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your account?' } %>
+  <% end %>
+
 </div>

@@ -1,35 +1,51 @@
 class AdventuresController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
+  def intro
+    @adventures = Adventure.upcoming.is_public.order(date: :asc).limit(5)
+  end
+
   def index
     @adventures = Adventure.all
 
     #Filter by public only
     @adventures = @adventures.is_public
+
+    if params[:match_active_character].present? && current_user
+      puts "Active char enabled"
+      @adventures = @adventures.compatible_with_active_character(current_user)
+      render :index
+      return
+    end
+
+    puts "Active char not enabled"
     
     # Filter: Past vs upcoming
     if params[:time].present?
       @adventures = params[:time] == 'upcoming' ? @adventures.upcoming : @adventures.past
     end
     
-      # Filter: Ruleset
-    if params[:ruleset] == 'active_character' && current_user && current_user.active_character
-      @adventures = @adventures.by_ruleset(active_character.ruleset)
-    elsif params[:ruleset] != 'all' && params[:ruleset] != 'active_character'
-      @adventures = @adventures.by_ruleset(params[:ruleset])
+    # Filter: Ruleset
+    if params[:ruleset].present?
+      if params[:ruleset] == 'active_character' && current_user && current_user.active_character
+        @adventures = @adventures.by_ruleset(active_character.ruleset)
+      elsif params[:ruleset] != 'all' && params[:ruleset] != 'active_character'
+        @adventures = @adventures.by_ruleset(params[:ruleset])
+      end
     end
  
     # Filter: open
     @adventures = @adventures.open if params[:vacancy].present?
+
     # Filter: by level
-    if params[:min_level].present? && params[:max_level].present?
-      @adventures = @adventures.by_level_range(params[:min_level], params[:max_level])
-    end
+    min_level = params[:min_level].present? ? params[:min_level] : 0
+    max_level = params[:max_level].present? ? params[:max_level] : 99
+    @adventures = @adventures.by_level_range(min_level, max_level)
+
     # Filter: by platform (in person vs VTT)
     if params[:platform].present?
       @adventures = params[:platform] == 'virtual' ? @adventures.virtual : @adventures.in_person
     end
-    @adventures_test = @adventures
   end
 
   def show
