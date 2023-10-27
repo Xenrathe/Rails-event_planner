@@ -7,7 +7,7 @@
   <h2>Adventures</h2>
   <ul>
   <% @character.attended_adventures.order(date: :desc).each do |adventure| %>
-    <li> <%= adventure.name %> on <%= adventure.date %>
+    <li> <%= link_to adventure.name, adventure_path(adventure) %> on <%= adventure.date %>
   <% end %>
   </ul>
 </div>

@@ -36,7 +36,7 @@ class CharactersController < ApplicationController
     @character = current_user.characters.build(character_params) if current_user
     
     if @character.save
-      @character.active_character = @character if current_user.active_character.nil?
+      current_user.active_character = @character if current_user.active_character.nil?
       redirect_to character_path(@character)
     else
       flash[:alert] = "Error saving new character."

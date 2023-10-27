@@ -1,0 +1,66 @@
+<%= form_for @adventure do |f| %>
+  <div class="form-group">
+    <%= f.label :date %>
+    <%= f.datetime_local_field :date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ruleset %>
+    <%= f.select :ruleset, Adventure.rulesets.keys, {}, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :module %>
+    <%= f.text_field :module, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :platform %>
+    <%= f.select :platform, Adventure.platforms.keys, {}, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :max_seats %>
+    <%= f.number_field :max_seats, in: 1..10, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :min_age %>
+    <%= f.number_field :min_age, in: 0..99, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :min_level %>
+    <%= f.number_field :min_level, in: 0..99, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :max_level %>
+    <%= f.number_field :max_level, in: 1..99, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :is_private %>
+    <%= f.check_box :is_private, class: 'form-check-input' %>
+  </div>
+
+  <div class="form-group">
+    <% button_text = mode == 'new' ? 'Create Adventure' : 'Update Adventure' %>
+    <%= f.submit button_text, class: 'btn' %>
+  </div>
+<% end %>

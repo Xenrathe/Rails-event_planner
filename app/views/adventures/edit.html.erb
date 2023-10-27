@@ -1,0 +1,10 @@
+<div class="Adventures">
+  <h1>Edit Adventure</h1>
+
+  <% if current_user && @adventure.creator_id == current_user.id %>
+    <%= render 'form' , mode: 'edit' %>
+  <% else %>
+    <h3>ERROR: You did not create this adventure and therefore cannot edit it.</h3>
+  <% end %>
+
+</div>

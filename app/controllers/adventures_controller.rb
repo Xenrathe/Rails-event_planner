@@ -103,8 +103,38 @@ class AdventuresController < ApplicationController
 
   def attend
     @adventure = Adventure.find(params[:id])
-    current_user.attended_adventures << @adventure
-    redirect_to @adventure, notice: 'You are now attending this adventure.'
+
+    if !current_user || current_user.active_character.nil?
+      flash[:alert] = "Error: No active character"
+      render :show, status: :unprocessable_entity
+      return
+    end
+
+    # Remove attendance if already attending
+    if @adventure.attendees.include?(current_user.active_character)
+      current_user.active_character.attended_adventures.delete(@adventure)
+      redirect_to @adventure, notice: "#{current_user.active_character.name} is no longer attending this adventure."
+      return
+    end
+
+    # Otherwise attempt to attend
+    if current_user.active_character.level >= @adventure.min_level && current_user.active_character.level <= @adventure.max_level
+      if current_user.birthdate + @adventure.min_age.years < Time.now
+        if @adventure.attendees.count < @adventure.max_seats
+          current_user.active_character.attended_adventures << @adventure
+          redirect_to @adventure, notice: "#{current_user.active_character.name} is now attending this adventure."
+        else
+          flash[:alert] = "Adventure is full."
+          render :show, status: :unprocessable_entity
+        end
+      else
+        flash[:alert] = "You do not meet minimum age requirements."
+        render :show, status: :unprocessable_entity
+      end
+    else
+      flash[:alert] = "Character level is not within min/max of adventure."
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
