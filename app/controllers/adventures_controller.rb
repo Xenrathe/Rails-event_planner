@@ -1,5 +1,5 @@
 class AdventuresController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :attend]
 
   def intro
     @adventures = Adventure.upcoming.is_public.order(date: :asc).limit(5)
@@ -52,18 +52,53 @@ class AdventuresController < ApplicationController
     @adventure = Adventure.find(params[:id])
   end
 
+  def edit
+    @adventure = Adventure.find(params[:id])
+  end
+
+  def update
+    @adventure = Adventure.find(params[:id])
+
+    # Only allow creators to edit the adventure
+    if current_user && @adventure.creator_id == current_user.id
+      if @adventure.update(adventure_params)
+        flash[:notice] = "Adventre successfully edited."
+        redirect_to adventure_path(@adventure)
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    else
+      flash[:alert] = "You are not this adventure's creator."
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def new
     @adventure = current_user.adventures.build() if current_user
   end
 
   def create
-    @adventure = current_user.adventures.build(new_adventure_params) if current_user
+    @adventure = current_user.adventures.build(adventure_params) if current_user
     
     if @adventure.save
       redirect_to current_user
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @adventure = Adventure.find(params[:id])
+    if current_user && current_user.id == @adventure.creator_id 
+      if @adventure.destroy
+        flash[:notice] = 'Adventure was successfully deleted.'
+      else
+        flash[:alert] = 'Failed to delete the adventure.'
+      end
+    else
+      flash[:alert] = 'Only adventure creator can destroy it.'
+    end
+    redirect_to adventures_path
   end
 
   def attend
@@ -74,7 +109,7 @@ class AdventuresController < ApplicationController
 
   private
 
-  def new_adventure_params
+  def adventure_params
     params.require(:adventure).permit(:name, :date, :ruleset, :module, :description, :platform, 
                                       :max_seats, :min_age, :min_level, :max_level, :address, :is_private)
   end

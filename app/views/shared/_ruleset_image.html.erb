@@ -1,0 +1,30 @@
+  <% ruleset_num = 0 %>
+  <% if defined?(character) %>
+    <% ruleset_num = Character.rulesets[@character.ruleset] %>
+  <% elsif defined?(adventure) %>
+   <% ruleset_num = Adventure.rulesets[@adventure.ruleset] %>
+  <% end %>
+  <% ruleset_image = case ruleset_num
+    when 0, 1
+      "Logos/dungeonsanddragons.jpg"
+    when 2
+      "Logos/callofcthulhu.png"
+    when 3
+      "Logos/Pathfinder1E.png"
+    when 4
+      "Logos/Pathfinder2E.png"
+    when 5
+      "Logos/warhammer.png"
+    when 6
+      "Logos/Warhammer40k.png"
+    when 7
+      "Logos/worldofdarkness.png"
+    when 8
+      "Logos/apocalypseworld.jpg"
+    when 9
+      "Logos/starwarsroleplaying.jpg"
+    else
+      "Logos/starwarsroleplaying.jpg"
+  end %>
+
+  <%= image_tag ruleset_image, size: image_size, alt: "Ruleset Logo" %>

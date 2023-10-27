@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :adventures, only: [:index, :new, :create, :show] do
+  resources :adventures, only: [:index, :new, :create, :show, :edit, :update, :destroy ] do
     member do
       post 'attend'
     end

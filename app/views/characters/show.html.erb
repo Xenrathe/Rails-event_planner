@@ -1,29 +1,6 @@
 <div class="Show Character">
   <h2> <%= @character.name %> </h2>
-  <% ruleset_image = case Character.rulesets[@character.ruleset]
-    when 0, 1
-      "Logos/dungeonsanddragons.jpg"
-    when 2
-      "Logos/callofcthulhu.png"
-    when 3
-      "Logos/Pathfinder1E.png"
-    when 4
-      "Logos/Pathfinder2E.png"
-    when 5
-      "Logos/warhammer.png"
-    when 6
-      "Logos/Warhammer40k.png"
-    when 7
-      "Logos/worldofdarkness.png"
-    when 8
-      "Logos/apocalypseworld.jpg"
-    when 9
-      "Logos/starwarsroleplaying.jpg"
-    else
-      "Logos/starwarsroleplaying.jpg"
-  end %>
-
-  <%= image_tag ruleset_image, size: "400x200", alt: "Ruleset Logo" %>
+  <%= render 'shared/ruleset_image', image_size: "400x200", character: @character %>
   <h3>A level <%= @character.level %> <%= @character.gender %> <%= @character.race %> <%= @character.character_class %> </h3>
   <p> <%= @character.backstory %>
 
