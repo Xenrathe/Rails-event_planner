@@ -56,10 +56,14 @@
     <% @characters.each do |character|%>
       <li> <%= link_to character.name, character_path(character) %>: A level <%= character.level %> <%= character.gender %> <%= character.race %> <%= character.character_class %> (<%= character.ruleset %>)
       <% if character == @active_character %>
-        [active]
+        <br>[active]
       <% else %>
-        <%= link_to "[set active]", set_active_character_path(character), method: :patch, data: { turbo_method: :patch } %>
+        <br><%= link_to "[set active]", set_active_character_path(character), method: :patch, data: { turbo_method: :patch } %>
+      <% end %> 
+      <% if current_user && current_user.id == @user.id %>
+        - <%= link_to "[edit]", edit_character_path(character) %>
       <% end %>
+      </li>
     <% end %>
   </ul>
 

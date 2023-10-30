@@ -1,0 +1,25 @@
+.adventure-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh-top);
+
+  background: linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)), url("tavern-wide-bg.jpeg");
+  background-size: 100% 150%;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  color: white;
+  flex-grow: 1;
+}
+
+.adventure-intro .middle-content {
+  display: flex;
+  width: 100%;
+}
+
+.adventure-intro .left {
+  justify-self: center;
+  align-self: center;
+  margin-left: 15%;
+}

@@ -2,7 +2,6 @@
 
 ## View Basics to-do
 * Adventure SHOW (as creator): reserving seats, removing characters, inviting via email.
-* User show also has 'edit' next to character. Additionally character show has an edit button if character belongs to currently logged in user 
 
 ## View Styling / Presentation
 * Adventure New styling
@@ -13,3 +12,5 @@
 
 ## Image Attribution
 <a href="https://www.freepik.com/free-vector/computer-games-colorful-elements-cartoon-set_4282638.htm#query=pixel%20art%20dungeon&position=16&from_view=search&track=ais">Image by macrovector</a> on Freepik
+
+<a href="https://www.pexels.com/photo/close-up-of-wooden-plank-326311/">Wooden BG</a> on Pexels

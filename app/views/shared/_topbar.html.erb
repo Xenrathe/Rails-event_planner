@@ -1,0 +1,17 @@
+<div class="top-bar">
+  <a href="<%= root_path %>">
+    <div class="top-logo">
+      <%= image_tag "T3Logo.jpeg", size: "100x100"%>
+      TableTop Tavern
+    </div>
+  </a>
+  <div class="top-links">
+    <%= button_to "ADVENTURES", adventures_path, method: :get, class: "btn" %>
+    <% if user_signed_in? %>
+      <%= button_to "PROFILE", user_path(current_user), method: :get, class: "btn" %>
+      <%= button_to "SIGN OUT", destroy_user_session_path, class: "btn", method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to sign out?' } %>
+    <% else %>
+      <%= button_to "SIGN IN/SIGN UP", new_user_session_path, method: :get, class: "btn" %>
+    <% end %>
+  </div>
+</div>
