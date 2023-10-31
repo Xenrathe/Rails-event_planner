@@ -91,6 +91,9 @@
   background-size: 100% 120%;
   background-repeat: no-repeat;
   background-position-y: -100px;
+
+  --text_col: #bda332;
+  --bg_col: #660a0a7c;
 }
 
 .adventure-index .filter-form {
@@ -115,10 +118,23 @@
 .adventure-index .form-item {
   display: flex;
   flex-direction: column;
+  font-size: 18px;
+  color: var(--text_col);
+}
+
+.adventure-index .form-item .form-control {
+  font-size: 18px;
+  color: var(--text_col);
+  background-color: #660a0a7c;
+}
+
+.adventure-index .form-item select option {
+  background: #440707;
 }
 
 .adventure-index .form-item .form-lvl {
   width: 80px;
+  color: var(--text_col);
 }
 
 .adventure-index .content {
@@ -133,16 +149,14 @@
   margin-top: 80px;
 }
 
-.adventure-index .content .btn{
-  --b: 3px;   /* border thickness */
+.adventure-index .btn{
   --s: .15em; /* size of the corner */
-  --c: #bda332;
   
   padding: calc(.2em + var(--s)) calc(.3em + var(--s));
-  color: var(--c);
+  color: var(--text_col);
   --_p: var(--s);
   background:
-    conic-gradient(from 90deg at var(--b) var(--b),#660a0a7c 90deg,var(--c) 0)
+    conic-gradient(from 90deg at var(--b) var(--b),#660a0a7c 90deg,var(--text_col) 0)
     var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
   transition: .3s linear, color 0s, background-color 0s;
   outline: var(--b) solid #0000;
@@ -150,10 +164,19 @@
 
   font-family: "Metam";
   font-weight: bold;
-  font-size: 25px;
   cursor: pointer;
   border: none;
   margin: .1em;
+}
+
+.adventure-index .content .btn {
+  --b: 2px;   /* border thickness */
+  font-size: 25px;
+}
+
+.adventure-index .form-buttons .btn{
+  --b: 1px;   /* border thickness */
+  font-size: 18px;
 }
 
 .adventure-index .content .adventure-content{

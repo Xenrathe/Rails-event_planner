@@ -91,14 +91,14 @@ a {
 
 .top-bar .btn:hover,
 .top-bar .btn:focus-visible, 
-.adventure-index .content .btn:hover,
-.adventure-index .content .btn:focus-visible{
+.adventure-index .btn:hover,
+.adventure-index .btn:focus-visible{
   --_p: 0px;
   outline-color: var(--c);
   outline-offset: .05em;
 }
 .top-bar .btn:active,
-.adventure-index .content .btn:active {
+.adventure-index .btn:active {
   background: var(--c);
   color: #fff;
 }

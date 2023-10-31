@@ -23,11 +23,11 @@
 
       <div class="form-item">
         <%= label_tag :min_level, "Min Level:" %>
-        <%= text_field_tag 'min_level', params[:min_level], class: 'form-control form-lvl', placeholder: 'Min Level' %>
+        <%= number_field_tag 'min_level', params[:min_level], class: 'form-control form-lvl', placeholder: '0', min: 0, max: 99 %>
       </div>
       <div class="form-item">  
         <%= label_tag :max_level, "Max Level:" %>
-        <%= text_field_tag 'max_level', params[:max_level], class: 'form-control form-lvl', placeholder: 'Max Level' %>
+        <%= number_field_tag 'max_level', params[:max_level], class: 'form-control form-lvl', placeholder: '99', min: 0, max: 99 %>
       </div>
     </div>
 

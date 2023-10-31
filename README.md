@@ -10,6 +10,7 @@
 ## Nice-to-haves / polish
 * Dates/times are set to user's timezone or default to EST
 * Login via username, not just email
+* Adventure INDEX view: Maintain filter / adventure alignment
 
 ## Image Attribution
 <a href="https://www.freepik.com/free-vector/computer-games-colorful-elements-cartoon-set_4282638.htm#query=pixel%20art%20dungeon&position=16&from_view=search&track=ais">Image by macrovector</a> on Freepik
