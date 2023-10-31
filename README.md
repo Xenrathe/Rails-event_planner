@@ -7,7 +7,8 @@
 * Adventure New styling
 * Choose an Avatar when creating or editing Characters (also include in Model)
 
-## Nice-to-haves
+## Nice-to-haves / polish
+* Dates/times are set to user's timezone or default to EST
 * Login via username, not just email
 
 ## Image Attribution

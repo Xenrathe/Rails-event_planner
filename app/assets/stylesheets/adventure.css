@@ -1,3 +1,8 @@
+.adventure-intro, .adventure-index {
+  flex-grow: 1;
+  color: white;
+}
+
 .adventure-intro {
   display: flex;
   flex-direction: column;
@@ -6,11 +11,9 @@
   height: calc(100vh-top);
 
   background: linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)), url("tavern-wide-bg.jpeg");
-  background-size: 100% 150%;
+  background-size: 100% 120%;
   background-repeat: no-repeat;
-  background-position-y: bottom;
-  color: white;
-  flex-grow: 1;
+  background-position-y: -100px;
 }
 
 .adventure-intro .middle-content {
@@ -22,4 +25,147 @@
   justify-self: center;
   align-self: center;
   margin-left: 15%;
+}
+
+.adventure .adventure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adventure .adventure-entry {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  min-height: 60px;
+  border: 2px solid #BD5532;
+  color: #db9882;
+  padding: 5px;
+  background-color: #29120b;
+}
+
+.adventure-index .adventure-entry {
+  max-width: 800px;
+}
+
+.adventure-index .adventure-entry .details {
+  margin-right: 30px;
+  margin-left: 100px;
+}
+
+.adventure-intro.adventure-entry .details {
+  margin-right: 5px;
+  margin-left: 20px;
+}
+
+
+.adventure-intro .find-more {
+  justify-content: center;
+  font-size: 40px;
+}
+
+.adventure .adventure-entry:hover {
+  border-color:#BD5532;
+  color: #db9882;
+  background-color: #3f1c11;
+}
+
+.adventure .adventure-entry .title {
+  font-size: 25px;
+  width: 250px;
+}
+
+.adventure .adventure-entry .details {
+  display: flex;
+  flex-direction: column;
+}
+
+.adventure-index {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("tavern-wide-bg.jpeg");
+  background-size: 100% 120%;
+  background-repeat: no-repeat;
+  background-position-y: -100px;
+}
+
+.adventure-index .filter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.adventure-index .form-buttons{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-self: center;
+}
+
+.adventure-index .filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.adventure-index .form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.adventure-index .form-item .form-lvl {
+  width: 80px;
+}
+
+.adventure-index .content {
+  display: flex;
+  width: 85vw;
+  flex-grow: 1;
+  margin-left: 10vw;
+}
+
+.adventure-index .content .button_to {
+  margin-right: 50px;
+  margin-top: 80px;
+}
+
+.adventure-index .content .btn{
+  --b: 3px;   /* border thickness */
+  --s: .15em; /* size of the corner */
+  --c: #bda332;
+  
+  padding: calc(.2em + var(--s)) calc(.3em + var(--s));
+  color: var(--c);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#660a0a7c 90deg,var(--c) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .2em;
+
+  font-family: "Metam";
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  margin: .1em;
+}
+
+.adventure-index .content .adventure-content{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.adventure-index .content .adventure-list-title {
+    font-size: 45px;
+    font-family: "Metam";
+    color: #db9882;
+    margin-top: 15px;
+    margin-left: 5%;
 }

@@ -1,7 +1,7 @@
-<div class="adventure-intro">
+<div class="adventure adventure-intro">
   <div class="text-intro">
-    <h1>Welcome to the TableTop Tavern</h1>
-    <p>Discover exciting adventures and create memorable stories with fellow travelers.</p>
+    <h1>"Welcome to TableTop Tavern!"</h1>
+    <p>"Kick up yer boots, traveler, and grab an ale. Take a look at our Adventure Board, a listing of adventures from all 'cross the multiverse."</p>
   </div>
 
   <div class="middle-content">
@@ -9,20 +9,18 @@
       <%= image_tag "tavernkeeper.jpeg", size: "450x450", alt: "Tavernkeeper Image", class: "innkeeper" %>
     </div>
 
-    <div class="upcoming-adventures">
+    <div class="right">
       <h2>Upcoming Adventures</h2>
-      <ul>
-        <% @adventures.each do |adventure| %>
-          <li>
-              <h4><%= link_to adventure.name, adventure_path(adventure) %></h4>
-              <p>Date: <%= adventure.date %></p>
-              <p>Ruleset: <%= adventure.ruleset %></p>
-              <p>For levels: <%= adventure.min_level %> to <%= adventure.max_level %></p>
-              <p>Hosted by <%= adventure.creator.username %> <% if Adventure.platforms[adventure.platform] > 2 %>virtually<% else %>in-person<% end %></p>              
-          </li>
-        <% end %>
-          <li> <h4><%= link_to "Find more!", adventures_path %></h4>
-      </ul>
+      <div class="adventure-list">
+      <% @adventures.each do |adventure| %>
+        <%= render 'entry', adventure: adventure, mode: 'brief' %>
+      <% end %>
+        <a href="<%= adventures_path %>">
+          <div class="adventure-entry find-more">
+            <div>FIND MORE</div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </div>

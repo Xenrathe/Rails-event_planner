@@ -1,12 +1,12 @@
   <% ruleset_num = 0 %>
   <% if defined?(character) %>
-    <% ruleset_num = Character.rulesets[@character.ruleset] %>
+    <% ruleset_num = Character.rulesets[character.ruleset] %>
   <% elsif defined?(adventure) %>
-   <% ruleset_num = Adventure.rulesets[@adventure.ruleset] %>
+   <% ruleset_num = Adventure.rulesets[adventure.ruleset] %>
   <% end %>
   <% ruleset_image = case ruleset_num
     when 0, 1
-      "Logos/dungeonsanddragons.jpg"
+      "Logos/dungeonsanddragons.png"
     when 2
       "Logos/callofcthulhu.png"
     when 3

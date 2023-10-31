@@ -1,53 +1,54 @@
-<div class="adventure">
-  <div class="top-links">
-    <%= link_to "Create Adventure", new_adventure_path %>
-    <% if user_signed_in? %>
-      <%= link_to "User Page", user_path(current_user) %>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to sign out?' } %>
-    <% else %>
-      <%= link_to "Sign in/New user", new_user_session_path %>
-    <% end %>
-  </div>
-
-  <div class="adventure-filters">
-    <%= form_tag(adventures_path, method: 'get') do %>
-      <div class="form-group">
+<div class="adventure adventure-index">
+  <%= form_tag(adventures_path, method: 'get', class: 'filter-form') do %>
+    <div class="filters">
+      <div class="form-item">
+        <%= label_tag :time, "Time:" %>
         <%= select_tag 'time', options_for_select([['All', nil], ['Upcoming', 'upcoming'], ['Past', 'past']], params[:time]), class: 'form-control' %>
       </div>
 
-      <div class="form-group">
+      <div class="form-item">
+        <%= label_tag :vacancy, "Vacancy:" %>
         <%= select_tag 'vacancy', options_for_select([['All', nil], ['Open', 'open']], params[:vacancy]), class: 'form-control' %>
       </div>
 
-      <div class="form-group">
+      <div class="form-item">
+        <%= label_tag :ruleset, "Ruleset:" %>
         <%= select_tag 'ruleset', options_for_select([['All', 'all'], ['Active-char', 'active_character']] + Adventure.rulesets.map { |k, v| [k.humanize, v] }, params[:ruleset]), class: 'form-control' %>
       </div>
 
-      <div class="form-group">
+      <div class="form-item">
+        <%= label_tag :platform, "Platform:" %>
         <%= select_tag 'platform', options_for_select([['All', nil], ['In-Person', 'in_person'], ['Virtual', 'virtual']], params[:platform]), class: 'form-control' %>
       </div>
 
-      <div class="form-group">
-        <%= text_field_tag 'min_level', params[:min_level], class: 'form-control', placeholder: 'Min Level' %>
-        <%= text_field_tag 'max_level', params[:max_level], class: 'form-control', placeholder: 'Max Level' %>
+      <div class="form-item">
+        <%= label_tag :min_level, "Min Level:" %>
+        <%= text_field_tag 'min_level', params[:min_level], class: 'form-control form-lvl', placeholder: 'Min Level' %>
       </div>
+      <div class="form-item">  
+        <%= label_tag :max_level, "Max Level:" %>
+        <%= text_field_tag 'max_level', params[:max_level], class: 'form-control form-lvl', placeholder: 'Max Level' %>
+      </div>
+    </div>
 
+    <div class="form-buttons">
+      <%= button_tag 'Apply Filters', type: :submit, value: 'default', class: 'btn', name: 'filter' %>
       <% if current_user && current_user.active_character.present? %>
-        <div class="form-group">
-          <%= label_tag :match_active_character, "Match Active Char" %>
-          <%= check_box_tag :match_active_character, params[:match_active_character] %>
-        </div>
+        <%= button_tag 'Match Active', type: :submit, value: 'match', class: 'btn', name: 'filter' %>
       <% end %>
-
-      <%= submit_tag 'Apply Filters', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  <div class="content">
+    <% if current_user %>
+      <%= button_to "NEW ADVENTURE", new_adventure_path, method: :get, class: 'btn' %>
     <% end %>
+    <div class="adventure-content">
+      <div class="adventure-list-title">Adventure List</div>
+      <div class="adventure-list">
+        <% @adventures.each do |adventure|%>
+          <%= render 'entry', adventure: adventure, mode: 'full' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <h1>Adventures</h1>
-
-  <ul>
-    <% @adventures.each do |adventure|%>
-      <li> <%= link_to adventure.name, adventure_path(adventure) %>
-    <% end %>
-  </ul>
 </div>

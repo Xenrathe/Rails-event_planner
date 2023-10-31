@@ -11,7 +11,7 @@ class AdventuresController < ApplicationController
     #Filter by public only
     @adventures = @adventures.is_public
 
-    if params[:match_active_character].present? && current_user
+    if params[:filter].present? && params[:filter] == 'match' && current_user
       puts "Active char enabled"
       @adventures = @adventures.compatible_with_active_character(current_user)
       render :index

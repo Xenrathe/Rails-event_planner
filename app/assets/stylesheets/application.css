@@ -47,7 +47,7 @@ body {
   background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url("wooden-bg.jpg");
 }
 
-.top-bar a {
+a {
   text-decoration: none;
 }
 
@@ -66,7 +66,7 @@ body {
   gap: 10px;
 }
 
-.top-bar .btn {
+.top-bar .btn{
   --b: 3px;   /* border thickness */
   --s: .15em; /* size of the corner */
   --c: #BD5532;
@@ -90,12 +90,15 @@ body {
 }
 
 .top-bar .btn:hover,
-.top-bar .btn:focus-visible{
+.top-bar .btn:focus-visible, 
+.adventure-index .content .btn:hover,
+.adventure-index .content .btn:focus-visible{
   --_p: 0px;
   outline-color: var(--c);
   outline-offset: .05em;
 }
-.top-bar .btn:active {
+.top-bar .btn:active,
+.adventure-index .content .btn:active {
   background: var(--c);
   color: #fff;
 }

@@ -1,0 +1,11 @@
+<a href="<%= adventure_path(adventure) %>">
+<div class="adventure-entry">
+  <%= render 'shared/ruleset_image', image_size: "100x50", adventure: adventure %>
+  <div class="title"><%= adventure.name %></div>
+  <div class="details">
+    <div class="detail">Date: <%= adventure.date %></div> 
+    <div class="detail">Levels: <%= adventure.min_level %> to <%= adventure.max_level %></div>  
+    <div class="detail">Hosted by: <%= adventure.creator.username %> <b><% if Adventure.platforms[adventure.platform] > 2 %>virtually<% else %>in-person<% end %></b></div>             
+  </div>
+</div>
+</a>
