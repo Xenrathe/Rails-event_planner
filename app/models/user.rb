@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :adventures, foreign_key: :creator_id
-  has_many :characters
+  has_many :adventures, foreign_key: :creator_id, dependent: :destroy
+  has_many :characters, dependent: :destroy
   has_one :active_character, class_name: 'Character', foreign_key: :active_user_id
 end

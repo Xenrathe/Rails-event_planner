@@ -4,8 +4,13 @@
 * Adventure SHOW (as creator): reserving seats, removing characters, inviting via email.
 
 ## View Styling / Presentation
-* Adventure New styling
+* Adventure New view / styling
 * Choose an Avatar when creating or editing Characters (also include in Model)
+* Character new view / styling
+* Character show view / styling
+* User profile / show view styling
+* Mobile view adjustments
+* Adventure Index scrollbar only on the adventure list itself
 
 ## Nice-to-haves / polish
 * Dates/times are set to user's timezone or default to EST

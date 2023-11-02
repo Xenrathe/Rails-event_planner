@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @owned_adventures = @user.adventures
-    @attended_adventures = @user.characters.flat_map { |character| character.attended_adventures.includes(:adventure) }
+    @attendances = @user.characters.flat_map do |character|
+      character.attended_adventures.map { |adventure| [character, adventure] }
+    end
     @characters = @user.characters.sorted_by_level
     @active_character = @user.active_character
   end

@@ -7,5 +7,10 @@
     <div class="detail">Levels: <%= adventure.min_level %> to <%= adventure.max_level %></div>  
     <div class="detail">Hosted by: <%= adventure.creator.username %> <b><% if Adventure.platforms[adventure.platform] > 2 %>virtually<% else %>in-person<% end %></b></div>             
   </div>
+  <% if mode == 'full'%>
+    <div class="seats">
+      <%= adventure.attendees.count %> / <%= adventure.max_seats %> 
+    </div>
+  <% end %>
 </div>
 </a>

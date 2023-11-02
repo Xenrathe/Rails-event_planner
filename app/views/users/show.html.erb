@@ -26,8 +26,8 @@
 
   <% past_attendances = [] %>
   <% upcoming_attendances = [] %>
-  <% @attended_adventures.each do |attendance|%>
-    <% if attendance.adventure.date >= Date.today %>
+  <% @attendances.each do |attendance|%>
+    <% if attendance[1].date >= Date.today %>
       <% upcoming_attendances << attendance %>
     <% else %>
       <% past_attendances << attendance %>
@@ -37,14 +37,14 @@
   <h2>Upcoming Adventures:</h2>
   <ul>
     <% upcoming_attendances.each do |attendance|%>
-      <li> <%= attendance.adventure.name %> on <%= attendance.adventure.date %>, character: <%= attendance.character.name %>
+      <li> <%= attendance[1].name %> on <%= attendance[1].date %>, character: <%= attendance[0].name %>
     <% end %>
   </ul>
 
   <h2>Past Adventures:</h2>
   <ul>
     <% past_attendances.each do |attendance|%>
-      <li> <%= attendance.adventure.name %> on <% attendance.adventure.date %>, character: <%= attendance.character.name %>
+      <li> <%= attendance[1].name %> on <%= attendance[1].date %>, character: <%= attendance[0].name %>
     <% end %>
   </ul>
 
