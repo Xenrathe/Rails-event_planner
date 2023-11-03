@@ -1,0 +1,48 @@
+.character {
+  --img_size: 125px;
+}
+
+.character #avatar-thumbnails-full {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.466);
+}
+
+.character #avatar-thumbnails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px;
+
+  --w: calc((var(--img_size) + 6px) * 6 + 17px + 16px );
+  position: fixed;
+  top: 15%;
+  margin-left: calc(50% - (var(--w)/2));
+  width: var(--w);
+  height: 700px;
+  overflow: auto;
+  background-color: black;
+
+  border-style: ridge;
+  border-color: black;
+  border-width: 3px;
+  padding: 5px;
+}
+
+.character .avatar-thumbnail-btn, .character .avatar-main-btn {
+  padding: 0px;
+  height: calc(var(--img_size) + 4px);
+}
+
+.character .avatar-thumbnail-btn:hover, .character .avatar-main-btn:hover {
+  border-color: red;
+}
+
+.character .avatar-thumbnail-img {
+  width: var(--img_size);
+  height: var(--img_size);
+}

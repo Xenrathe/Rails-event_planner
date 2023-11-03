@@ -1,30 +1,8 @@
-.adventure-intro, .adventure-index {
+.adventure {
+  display: flex;
+  align-items: center;
   flex-grow: 1;
   color: white;
-}
-
-.adventure-intro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: calc(100vh-top);
-
-  background: linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)), url("tavern-wide-bg.jpeg");
-  background-size: 100% 120%;
-  background-repeat: no-repeat;
-  background-position-y: -100px;
-}
-
-.adventure-intro .middle-content {
-  display: flex;
-  width: 100%;
-}
-
-.adventure-intro .left {
-  justify-self: center;
-  align-self: center;
-  margin-left: 15%;
 }
 
 .adventure .adventure-list {
@@ -43,26 +21,6 @@
   color: #db9882;
   padding: 5px;
   background-color: #29120b;
-}
-
-.adventure-index .adventure-entry {
-  max-width: 800px;
-}
-
-.adventure-index .adventure-entry .details {
-  margin-right: 5px;
-  margin-left: 100px;
-}
-
-.adventure-intro.adventure-entry .details {
-  margin-right: 5px;
-  margin-left: 20px;
-}
-
-
-.adventure-intro .find-more {
-  justify-content: center;
-  font-size: 40px;
 }
 
 .adventure .adventure-entry:hover {
@@ -87,12 +45,12 @@
   padding-right: 5px;
 }
 
-.adventure-index {
-  padding: 10px;
-  display: flex;
+.adventure-index, .adventure-intro {
   flex-direction: column;
-  align-items: center;
+}
 
+.adventure-index, .adventure-show {
+  padding: 10px;
   background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("tavern-wide-bg.jpeg");
   background-size: 100% 120%;
   background-repeat: no-repeat;
@@ -100,6 +58,45 @@
 
   --text_col: #bda332;
   --bg_col: #660a0a7c;
+}
+
+.adventure-intro {
+  width: 100%;
+  background: linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)), url("tavern-wide-bg.jpeg");
+  background-size: 100% 120%;
+  background-repeat: no-repeat;
+  background-position-y: -100px;
+}
+
+.adventure-intro .middle-content {
+  display: flex;
+  width: 100%;
+}
+
+.adventure-intro .left {
+  justify-self: center;
+  align-self: center;
+  margin-left: 15%;
+}
+
+.adventure-intro.adventure-entry .details {
+  margin-right: 5px;
+  margin-left: 20px;
+}
+
+
+.adventure-intro .find-more {
+  justify-content: center;
+  font-size: 40px;
+}
+
+.adventure-index .adventure-entry {
+  max-width: 800px;
+}
+
+.adventure-index .adventure-entry .details {
+  margin-right: 5px;
+  margin-left: 100px;
 }
 
 .adventure-index .filter-form {
@@ -197,4 +194,52 @@
     color: #db9882;
     margin-top: 15px;
     margin-left: 5%;
+}
+
+.adventure-show {
+  flex-direction: column;
+  gap: 50px;
+  color: #db9882;
+  padding-top: 50px;
+}
+
+.adventure-show .main-title {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'metam';
+  color: #dbb582;
+}
+
+.adventure-show .content {
+ display: flex;
+ gap: 20px; 
+}
+
+.adventure-show a {
+  color: #e69122;
+}
+
+.adventure-show .main-details, .adventure-show .details, .adventure-show .attendees {
+  border-style: ridge;
+  border-width: 5px;
+  border-color: rgb(194, 106, 23);
+  padding: 5px;
+}
+
+.adventure-show .main-details {
+  align-self: flex-start;
+  margin-top: 5%;
+  font-size: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+
+}
+
+
+.adventure-show .secondary {
+  margin-top: 150px;
 }
