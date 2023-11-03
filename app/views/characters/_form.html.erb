@@ -1,45 +1,71 @@
-  <%= form_for @character do |f| %>
+<%= javascript_import_module_tag "custom/character_avatar" %>
 
-    <div class="field">
-      <%= f.label :ruleset %>
-      <%= f.select :ruleset, Character.rulesets.keys %>
-    </div>
+<%= form_for @character do |f| %>
+  <div class="field">
+    <%= f.label :ruleset %>
+    <%= f.select :ruleset, Character.rulesets.keys %>
+  </div>
 
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-    <div class="field">
-      <%= f.label :gender %>
-      <%= f.select :gender, Character.genders.keys %>
-    </div>
+  <div class="field">
+    <%= f.label :gender %>
+    <%= f.select :gender, Character.genders.keys %>
+  </div>
 
-    <div class="field">
-      <%= f.label :race %>
-      <%= f.text_field :race %>
-    </div>
+  <div class="field">
+    <%= f.label :race %>
+    <%= f.text_field :race %>
+  </div>
 
-    <div class="field">
-      <%= f.label :character_class %>
-      <%= f.text_field :character_class %>
-    </div>
+  <div class="field">
+    <%= f.label :character_class %>
+    <%= f.text_field :character_class %>
+  </div>
 
-    <div class="field">
-      <%= f.label :level %>
-      <%= f.number_field :level, min: 0, max: 99 %>
-    </div>
+  <div class="field">
+    <%= f.label :level %>
+    <%= f.number_field :level, min: 0, max: 99 %>
+  </div>
 
-    <div class="field">
-      <%= f.label :backstory %>
-      <%= f.text_area :backstory %>
-    </div>
+  <div class="field">
+    <%= f.label :backstory %>
+    <%= f.text_area :backstory %>
+  </div>
 
-    <div class="actions">
-      <% if base_action == 'new'%>
-        <%= f.submit "Create Character" %>
+  <div class="field">
+    <%= f.label :avatar, "Avatar:" %>
+    <button type="button" id="show-avatars" class="avatar-main-btn">
+      <% if @character.nil? || @character.portrait_path.nil? %>
+        <% portrait_url = "female-fantasy-1.jpg" %>
       <% else %>
-        <%= f.submit "Edit Character" %>
+        <% portrait_url = "#{@character.portrait_path}" %>
       <% end %>
-    </div>
-  <% end %>
+      <%= image_tag "portraits/#{portrait_url}", id: "avatar-thumbnail-main", class: "avatar-thumbnail-img", size: "150x150"%>
+    </button>
+    <%= f.hidden_field :portrait_path, id: "avatar-path", value: portrait_url %>
+  </div>
+
+  <div class="actions">
+    <% if base_action == 'new'%>
+      <%= f.submit "Create Character" %>
+    <% else %>
+      <%= f.submit "Edit Character" %>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="avatar-thumbnails-full" style="display: none;">
+  <div id="avatar-thumbnails">
+  <!-- Loop through all the avatar images -->
+    <% portrait_files = Dir.entries("app/assets/images/portraits").select { |file| file.end_with?(".jpg") }.sort %>
+    <% portrait_files.each do |file| %>
+      <button type="button" class="avatar-thumbnail-btn">
+        <%= image_tag "portraits/#{file}", id: "#{file}", class: "avatar-thumbnail-img"%>
+      </button>
+    <% end %>
+  </div>
+</div>
