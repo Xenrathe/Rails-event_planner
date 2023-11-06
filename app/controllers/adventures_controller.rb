@@ -58,6 +58,10 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
+    
+    return unless current_user
+
+    @attended_adventures = Adventure.attending(current_user)
   end
 
   def edit
@@ -112,16 +116,26 @@ class AdventuresController < ApplicationController
   def attend
     @adventure = Adventure.find(params[:id])
 
-    if !current_user || current_user.active_character.nil?
-      flash[:alert] = "Error: No active character"
+    if !current_user
+      flash[:alert] = "Error: Must be logged in."
       render :show, status: :unprocessable_entity
       return
     end
 
+    character_to_remove = current_user.characters.find do |character|
+      @adventure.attendees.include?(character)
+    end
+
     # Remove attendance if already attending
-    if @adventure.attendees.include?(current_user.active_character)
-      current_user.active_character.attended_adventures.delete(@adventure)
-      redirect_to @adventure, notice: "#{current_user.active_character.name} is no longer attending this adventure."
+    unless character_to_remove.nil?
+      character_to_remove.attended_adventures.delete(@adventure)
+      redirect_to @adventure, notice: "#{character_to_remove.name} is no longer attending this adventure."
+      return
+    end
+
+    if current_user.active_character.nil?
+      flash[:alert] = "Error: No active character"
+      render :show, status: :unprocessable_entity
       return
     end
 

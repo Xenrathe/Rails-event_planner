@@ -7,6 +7,7 @@
 * Character new view / styling
 * Character show view / styling
 * User profile / show view styling
+* If user signed in, displays active_character in the topbar
 
 ## Nice-to-haves / polish
 * Login via username, not just email

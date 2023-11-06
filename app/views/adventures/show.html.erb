@@ -51,13 +51,14 @@
         </div>
 
         <div class="actions">
-          <% if user_signed_in? && !creator_mode && !current_user.active_character.nil? && 
+          <% attending = !@attended_adventures.nil? && @attended_adventures.exists?(@adventure.id) %>
+          <% if user_signed_in? && !creator_mode && attending || (!current_user.active_character.nil? && 
                 current_user.active_character.level >= @adventure.min_level && 
                 current_user.active_character.level <= @adventure.max_level && 
                 current_user.birthdate + @adventure.min_age.years < Time.now && 
-                @adventure.attendees.count < @adventure.max_seats %>
+                @adventure.attendees.count < @adventure.max_seats) %>
             <%= form_for @adventure, url: attend_adventure_path(@adventure), method: :post, remote: true do |f| %>
-              <% attend_text = @adventure.attendees.include?(current_user.active_character) ? 'Unattend Adventure' : 'Attend Adventure' %>
+              <% attend_text = attending ? 'Unattend Adventure' : 'Attend Adventure' %>
               <%= f.submit attend_text, class: 'btn small-btn' %>
             <% end %>
             <% if flash[:alert] %><div class="flash alert"><%= flash[:alert] %></div><% end %>
