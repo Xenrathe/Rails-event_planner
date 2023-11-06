@@ -28,4 +28,12 @@ class Adventure < ApplicationRecord
   scope :is_private, -> { where('is_private = ?', true) }
   scope :attending, ->(user) { joins(attendees: :user).where('characters.user_id = ?', user.id) }
 
+  validates :name, presence: true, length: { maximum: 40 }
+  validates :module, length: { maximum: 40 }
+  validates :description, presence: true, length: { maximum: 500}
+  validates :max_seats, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
+  validates :min_age, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 99 }
+  validates :min_level, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: 99 }
+  validates :max_level, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 99 }
+
 end

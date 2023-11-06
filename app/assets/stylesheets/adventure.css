@@ -378,10 +378,28 @@
   min-width: 100px;
 }
 
+.adventure-new .field_with_errors,
+.adventure-edit .field_with_errors {
+  min-width: 100px;
+}
+
+.adventure-new .field_with_errors .form-control,
+.adventure-edit .field_with_errors .form-control{
+  border-style: solid;
+  border-color: red;
+  border-width: 2px;
+}
+
+.adventure-new input[type="text"]{
+  max-width: 270px;
+}
+
 .adventure-new .description,
 .adventure-edit .description {
   height: 150px;
   min-height: 150px;
+  width: 270px;
+  max-width: 270px;
 }
 
 .adventure .form-item .form-check-input {

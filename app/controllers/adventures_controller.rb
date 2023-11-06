@@ -70,7 +70,7 @@ class AdventuresController < ApplicationController
     # Only allow creators to edit the adventure
     if current_user && @adventure.creator_id == current_user.id
       if @adventure.update(adventure_params)
-        flash[:notice] = "Adventre successfully edited."
+        flash[:notice] = "Adventure successfully edited."
         redirect_to adventure_path(@adventure)
       else
         render :edit, status: :unprocessable_entity
@@ -91,7 +91,7 @@ class AdventuresController < ApplicationController
     if @adventure.save
       redirect_to current_user
     else
-      render 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 

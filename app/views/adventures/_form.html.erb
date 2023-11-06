@@ -1,3 +1,5 @@
+<%= javascript_import_module_tag "custom/adventure_form" %>
+
 <%= form_for @adventure do |f| %>
   <div class="form-controls">
     <div class="form-item">
@@ -7,7 +9,7 @@
 
     <div class="form-item">
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control', maxlength: 40 %>
     </div>
 
     <div class="form-item">
@@ -17,12 +19,12 @@
 
     <div class="form-item">
       <%= f.label :module %>
-      <%= f.text_field :module, class: 'form-control' %>
+      <%= f.text_field :module, class: 'form-control', maxlength: 40 %>
     </div>
 
     <div class="form-item">
       <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control description' %>
+      <%= f.text_area :description, class: 'form-control description', maxlength: 500 %>
     </div>
 
     <div class="form-item">
@@ -61,5 +63,16 @@
   <div class="form-item">
     <% button_text = mode == 'new' ? 'Create Adventure' : 'Update Adventure' %>
     <%= f.submit button_text, class: 'btn small-btn' %>
+  </div>
+<% end %>
+
+<% if @adventure.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@adventure.errors.count, "error") %> prohibited this adventure from being saved:</h2>
+    <ul>
+      <% @adventure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
