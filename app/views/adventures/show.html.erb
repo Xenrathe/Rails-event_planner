@@ -58,21 +58,21 @@
                 @adventure.attendees.count < @adventure.max_seats %>
             <%= form_for @adventure, url: attend_adventure_path(@adventure), method: :post, remote: true do |f| %>
               <% attend_text = @adventure.attendees.include?(current_user.active_character) ? 'Unattend Adventure' : 'Attend Adventure' %>
-              <%= f.submit attend_text, class: 'btn' %>
+              <%= f.submit attend_text, class: 'btn small-btn' %>
             <% end %>
             <% if flash[:alert] %><div class="flash alert"><%= flash[:alert] %></div><% end %>
           <% elsif creator_mode %>
             <%= form_for @adventure, url: adventure_path(@adventure), method: :patch do |f| %>
               <% if @adventure.is_private %>
                 <%= f.hidden_field :is_private, value: false %>
-                <%= f.submit 'Make Public', class: 'btn' %>
+                <%= f.submit 'Make Public', class: 'btn small-btn' %>
               <% else %>
                 <%= f.hidden_field :is_private, value: true %>
-                <%= f.submit 'Make Private', class: 'btn' %>
+                <%= f.submit 'Make Private', class: 'btn small-btn' %>
               <% end %>
             <% end %>
-            <%= button_to "Edit", edit_adventure_path(@adventure), class: 'btn', method: :get %>
-            <%= button_to "Delete", adventure_path(@adventure), class: 'btn', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this adventure?' } %>
+            <%= button_to "Edit", edit_adventure_path(@adventure), class: 'btn small-btn', method: :get %>
+            <%= button_to "Delete", adventure_path(@adventure), class: 'btn small-btn', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this adventure?' } %>
           <% end %>
 
       <% else %>

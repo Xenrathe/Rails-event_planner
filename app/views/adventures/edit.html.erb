@@ -1,5 +1,5 @@
-<div class="Adventures">
-  <h1>Edit Adventure</h1>
+<div class="adventure adventure-edit">
+  <div class="title">Edit Adventure</div>
 
   <% if current_user && @adventure.creator_id == current_user.id %>
     <%= render 'form' , mode: 'edit' %>

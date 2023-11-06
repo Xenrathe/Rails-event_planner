@@ -32,9 +32,9 @@
     </div>
 
     <div class="form-buttons">
-      <%= button_tag 'Apply Filters', type: :submit, value: 'default', class: 'btn', name: 'filter' %>
+      <%= button_tag 'Apply Filters', type: :submit, value: 'default', class: 'btn small-btn', name: 'filter' %>
       <% if current_user && current_user.active_character.present? %>
-        <%= button_tag 'Match Active', type: :submit, value: 'match', class: 'btn', name: 'filter' %>
+        <%= button_tag 'Match Active', type: :submit, value: 'match', class: 'btn small-btn', name: 'filter' %>
       <% end %>
     </div>
   <% end %>
