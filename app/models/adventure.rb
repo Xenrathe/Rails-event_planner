@@ -11,7 +11,7 @@ class Adventure < ApplicationRecord
   scope :by_level_range, ->(min_lvl, max_lvl) { where('min_level >= ? AND max_level <= ?', min_lvl, max_lvl) }
   scope :compatible_with_active_character, lambda  { |user|
     if user.active_character.present?
-      where('ruleset = ? AND min_level <= ? AND max_level >= ?', 
+      where('adventures.ruleset = ? AND min_level <= ? AND max_level >= ?', 
       Character.rulesets[user.active_character.ruleset], 
       user.active_character.level, 
       user.active_character.level) 

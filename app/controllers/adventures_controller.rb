@@ -17,6 +17,7 @@ class AdventuresController < ApplicationController
 
     if params[:filter].present? && params[:filter] == 'match' && current_user
       @adventures = @adventures.compatible_with_active_character(current_user)
+      @attended_adventures = @adventures.attending(current_user)
       render :index
       return
     end
