@@ -66,16 +66,37 @@ a {
   gap: 10px;
 }
 
-.top-bar .btn{
+.top-bar .btn {
   --b: 3px;   /* border thickness */
-  --s: .15em; /* size of the corner */
   --c: #BD5532;
-  
+  --bgc: #0000;
+  font-size: 35px;
+}
+
+.adventure .btn{
+  --c: #bda332;
+  --bgc: #660a0a7c
+}
+
+.adventure-index .content .btn {
+  --b: 2px;   /* border thickness */
+  font-size: 25px;
+}
+
+.adventure-index .form-buttons .btn, 
+.adventure-show .btn {
+  --b: 1px;   /* border thickness */
+  font-size: 18px;
+}
+
+.btn{
+  --s: .15em; /* size of the corner */
+
   padding: calc(.2em + var(--s)) calc(.3em + var(--s));
   color: var(--c);
   --_p: var(--s);
   background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--c) 0)
+    conic-gradient(from 90deg at var(--b) var(--b), var(--bgc) 90deg,var(--c) 0)
     var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
   transition: .3s linear, color 0s, background-color 0s;
   outline: var(--b) solid #0000;
@@ -83,22 +104,26 @@ a {
 
   font-family: "Metam";
   font-weight: bold;
-  font-size: 35px;
   cursor: pointer;
   border: none;
   margin: .1em;
 }
 
-.top-bar .btn:hover,
-.top-bar .btn:focus-visible, 
-.adventure-index .btn:hover,
-.adventure-index .btn:focus-visible{
+.btn:hover,
+.btn:focus-visible {
   --_p: 0px;
   outline-color: var(--c);
   outline-offset: .05em;
 }
-.top-bar .btn:active,
-.adventure-index .btn:active {
+
+.adventure-index .form-buttons .btn:hover,
+.adventure-index .form-buttons .btn:focus-visible,
+.adventure-show .btn:hover,
+.adventure-show .btn:focus-visible {
+  outline-offset: .1em;
+}
+
+.btn:active{
   background: var(--c);
   color: #fff;
 }

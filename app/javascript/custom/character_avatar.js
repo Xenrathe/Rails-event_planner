@@ -7,6 +7,10 @@ function initializeFunctions()
     avatarThumbnailsFull.style.display = 'block';
   });
 
+  avatarThumbnailsFull.addEventListener("click", () => {
+    avatarThumbnailsFull.style.display = 'none';
+  });
+
   document.querySelectorAll('.avatar-thumbnail-btn').forEach(button => {
     button.addEventListener('click', function() {
       // Adjust the value of the hidden field #avatar_path to match the .jpg file name

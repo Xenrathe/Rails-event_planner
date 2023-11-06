@@ -1,26 +1,33 @@
 <div class="User">
   <h1> <%= @user.username %> </h1>
 
-  <h2>Bio</h2>
-  <% if current_user && current_user.id == @user.id %>
-    <%= form_for @user, url: { action: "update" }, method: :patch do |f| %>
-      <div class="field">
-        <%= f.text_area :bio, value: @user.bio %>
-      </div>
-      <div class="actions">
-        <%= f.submit "Update" %>
-      </div>
-    <% end %>
-  <% else %>
-    <p><%= @user.bio %></p>
+<% if current_user && current_user.id == @user.id %>
+  <%= form_for @user, url: { action: "update" }, method: :patch do |f| %>
+    <h2>Bio</h2>
+    <div class="field">
+      <%= f.text_area :bio, value: @user.bio %>
+    </div>
+    <h3>Timezone</h3>
+    <div class="field">
+      <%= f.time_zone_select :timezone %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
   <% end %>
+<% else %>
+  <h2>Bio</h2>
+  <p><%= @user.bio %></p>
+  <h3>Timezone</h3>
+  <p><%= @user.timezone %></p>
+<% end %>
 
   <h2><%= @user.username %>'s Adventures</h2>
 
   <h2>Created Adventures:</h2>
   <ul>
     <% @owned_adventures.each do |adventure|%>
-      <li> <%= adventure.name %>
+      <li> <%= link_to adventure.name, adventure_path(adventure) %>
     <% end %>
   </ul>
 

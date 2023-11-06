@@ -1,11 +1,18 @@
 <a href="<%= adventure_path(adventure) %>">
-<div class="adventure-entry">
+
+<% entry_class = "" %>
+<% if current_user %>
+  <% entry_class = "creator-entry" if current_user.id == adventure.creator_id %>
+  <% entry_class = "attendee-entry" if !attended_adventures.nil? && attended_adventures.exists?(adventure.id) %>
+<% end %>
+
+<div class="adventure-entry <%= entry_class %>">
   <%= render 'shared/ruleset_image', image_size: "100x50", adventure: adventure %>
   <div class="title"><%= adventure.name %></div>
   <div class="details">
-    <div class="detail">Date: <%= adventure.date %></div> 
-    <div class="detail">Levels: <%= adventure.min_level %> to <%= adventure.max_level %></div>  
-    <div class="detail">Hosted by: <%= adventure.creator.username %> <b><% if Adventure.platforms[adventure.platform] > 2 %>virtually<% else %>in-person<% end %></b></div>             
+    <div class="detail"><b>Date:</b> <%= formatted_date(adventure.date) %></div> 
+    <div class="detail"><b>Levels:</b> <%= adventure.min_level %> to <%= adventure.max_level %></div>  
+    <div class="detail"><b>Hosted by:</b> <%= adventure.creator.username %> <i><% if Adventure.platforms[adventure.platform] > 2 %>virtually<% else %>in-person<% end %></i></div>             
   </div>
   <% if mode == 'full'%>
     <div class="seats">

@@ -13,25 +13,41 @@
     <div class="secondary-details">
       <% if !@adventure.is_private || creator_mode %>
         <div class="details">
-          <div class="time">Occuring on <%= @adventure.date %></div>
+          <div class="time">Occurring on <%= formatted_date(@adventure.date) %></div>
+          <br>
           <% if !@adventure.module.nil? && @adventure.module != "" %>
-            <div class="detail"><span class="label">Module:</span> <%= @adventure.module %> </div>
+            <div class="detail"><span class="label"><b>Module:</b></span> <%= @adventure.module %> </div>
           <% end %>
-          <div class="detail"><span class="label">Platform:</span> <%= @adventure.platform %> </div>
+          <div class="detail"><span class="label"><b>Platform:</b></span> <%= @adventure.platform %> </div>
           <% if @adventure.platform == "InPersonPublic" || creator_mode %>
-            <div class="detail"><span class="label">Address:</span> <%= @adventure.address %> <% if creator_mode && @adventure.platform == "InPersonHome" %>(Not public)<% end %></div>
+            <div class="detail"><span class="label"><b>Address:</b></span> <%= @adventure.address %> <% if creator_mode && @adventure.platform == "InPersonHome" %>(Not public)<% end %></div>
           <% end %>
-          <div class="detail"><span class="label">Level:</span> <%= @adventure.min_level%> to <%= @adventure.max_level %></div>
-          <div class="detail"><span class="label">Minimum Age:</span> <%= @adventure.min_age %></div>
+          <div class="detail"><span class="label"><b>Level:</b></span> <%= @adventure.min_level%> to <%= @adventure.max_level %></div>
+          <div class="detail"><span class="label"><b>Minimum Age:</b></span> <%= @adventure.min_age %></div>
+          <br>
           <div class="description"><%= @adventure.description %></div>
         </div>
         
-        <div class="attendees">
-          <h2>Attendees (<%= @adventure.attendees.count%> / <%= @adventure.max_seats %>):</h2><ul>
+        <div class="attendees-details">
+          <div class="attendees-title">Attendees (<%= @adventure.attendees.count %> / <%= @adventure.max_seats %>)</div>
+          <div class="attendees">
             <% @adventure.attendees.each do |attendee| %>
-              <li><%= link_to attendee.name, character_path(attendee) %>, level <%= attendee.level %> <%= attendee.character_class %> <% if creator_mode %> (<%= attendee.user.email %>) <% end %>
+              <div class="attendee">
+                <div class="attendee-tooltip">
+                  <a href="<%= character_path(attendee) %>">
+                    <%= image_tag "portraits/#{attendee.portrait_path}", size: "80x80", class: "attendee-img" %>
+                  </a>
+                  <span class="attendee-tooltip-text">
+                    <b><%= attendee.name %></b><br>
+                    <%= attendee.character_class %> - Lv.<%= attendee.level %>
+                    <% if creator_mode %>
+                      (<%= attendee.user.email %>)
+                    <% end %>
+                  </span>
+                </div>
+              </div>
             <% end %>
-          </ul>
+          </div>
         </div>
 
         <div class="actions">

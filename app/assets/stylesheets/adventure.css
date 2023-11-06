@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 800px;
 }
 
 .adventure .adventure-entry {
@@ -17,16 +18,41 @@
   align-items: center;
 
   min-height: 60px;
+  padding: 5px;
+
   border: 2px solid #BD5532;
   color: #db9882;
-  padding: 5px;
   background-color: #29120b;
+}
+
+.adventure .creator-entry {
+  border: 2px solid #bbbd32;
+  color: #d5db82;
+  background-color: #29260b;
+}
+
+.adventure .attendee-entry {
+  border: 2px solid #7cbd32;
+  color: #aadb82;
+  background-color: #16290b;
 }
 
 .adventure .adventure-entry:hover {
   border-color:#e7673c;
   color: #db9882;
   background-color: #3f1c11;
+}
+
+.adventure .creator-entry:hover {
+  border: 2px solid #dbdd46;
+  color: #d5db82;
+  background-color: #494418;
+}
+
+.adventure .attendee-entry:hover {
+  border: 2px solid #9be04b;
+  color: #aadb82;
+  background-color: #274615;
 }
 
 .adventure .adventure-entry .title {
@@ -152,36 +178,6 @@
   margin-top: 80px;
 }
 
-.adventure-index .btn{
-  --s: .15em; /* size of the corner */
-  
-  padding: calc(.2em + var(--s)) calc(.3em + var(--s));
-  color: var(--text_col);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#660a0a7c 90deg,var(--text_col) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .2em;
-
-  font-family: "Metam";
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  margin: .1em;
-}
-
-.adventure-index .content .btn {
-  --b: 2px;   /* border thickness */
-  font-size: 25px;
-}
-
-.adventure-index .form-buttons .btn{
-  --b: 1px;   /* border thickness */
-  font-size: 18px;
-}
-
 .adventure-index .content .adventure-content{
   flex-grow: 1;
   display: flex;
@@ -219,10 +215,11 @@
   color: #e69122;
 }
 
-.adventure-show .main-details, .adventure-show .details, .adventure-show .attendees {
+.adventure-show .main-details, .adventure-show .details, .adventure-show .attendees-details {
   border-style: ridge;
   border-width: 5px;
   border-color: rgb(194, 106, 23);
+  background-color: rgba(100, 61, 25, 0.61);
   padding: 5px;
 }
 
@@ -239,7 +236,86 @@
 
 }
 
+.adventure-show .secondary-details {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  gap: 15px;
+}
 
-.adventure-show .secondary {
-  margin-top: 150px;
+.adventure-show .details, 
+.adventure-show .attendees-details {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+}
+
+.adventure-show .time,
+.adventure-show .attendees-title {
+  align-self: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.adventure-show .description {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.adventure-show .attendees {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.adventure-show .attendee {
+  margin: 5px;
+  position: relative;
+}
+
+.adventure-show .attendee-tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.adventure-show .attendee-tooltip-text {
+  visibility: hidden;
+  min-width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.adventure-show .attendee:hover .attendee-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.adventure-show .attendee img {
+  border-style: solid;
+  border-color: rgba(194, 106, 23, 0.021);
+  border-width: 2px;
+}
+
+.adventure-show .attendee:hover img {
+  border-style: solid;
+  border-color:rgb(194, 106, 23);
+  border-width: 2px;
+}
+
+.adventure-show .actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }

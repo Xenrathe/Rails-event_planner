@@ -167,16 +167,28 @@ adventure_descriptions = [
   )
 
   if user.save
+    gender_num = (rand(0..65) / 30).to_i
+
     rand(3..6).times do
+      directory = 'app/assets/images/portraits/'
       user.characters.create(
         name: character_names.sample,
         race: character_races.sample,
         character_class: character_classes.sample,
         level: rand(1..15),
-        gender: rand(0..2),
+        gender: gender_num,
         backstory: character_backstories.sample, 
-        ruleset: rand(0..9)
+        ruleset: rand(0..9),
+        portrait_path: case gender_num
+                       when 0
+                         File.basename(Dir.glob("#{directory}*male*.jpg").sample)
+                       when 1
+                         File.basename(Dir.glob("#{directory}*female*.jpg").sample)
+                       else
+                         File.basename(Dir.glob("#{directory}*other*.jpg").sample)
+                       end
       )
+      
     end
     user.active_character = user.characters.sample
   else
@@ -190,7 +202,7 @@ end
   level_num = rand(1..13)
   maxseat_num = rand(3..9)
   adventure = Adventure.new(
-    date: DateTime.now + rand(1..12).months,
+    date: DateTime.now + rand(1..12).months + rand(0..28).days + rand(0..1440).minutes,
     name: adventure_names[adventure_num],
     description: adventure_descriptions[adventure_num],
     creator: User.all.sample,

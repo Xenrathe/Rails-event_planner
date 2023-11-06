@@ -26,4 +26,6 @@ class Adventure < ApplicationRecord
   scope :in_person, -> { where('platform <= ?', 2) }
   scope :is_public, -> { where('is_private = ?', false) }
   scope :is_private, -> { where('is_private = ?', true) }
+  scope :attending, ->(user) { joins(attendees: :user).where('characters.user_id = ?', user.id) }
+
 end

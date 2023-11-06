@@ -3,6 +3,10 @@ class AdventuresController < ApplicationController
 
   def intro
     @adventures = Adventure.upcoming.is_public.order(date: :asc).limit(5)
+
+    return unless current_user
+
+    @attending_adventures = @adventures.attending(current_user)
   end
 
   def index
@@ -12,13 +16,10 @@ class AdventuresController < ApplicationController
     @adventures = @adventures.is_public
 
     if params[:filter].present? && params[:filter] == 'match' && current_user
-      puts "Active char enabled"
       @adventures = @adventures.compatible_with_active_character(current_user)
       render :index
       return
     end
-
-    puts "Active char not enabled"
     
     # Filter: Past vs upcoming
     if params[:time].present?
@@ -46,6 +47,13 @@ class AdventuresController < ApplicationController
     if params[:platform].present?
       @adventures = params[:platform] == 'virtual' ? @adventures.virtual : @adventures.in_person
     end
+
+    #Put in date order
+    @adventures = @adventures.order(date: :asc)
+
+    return unless current_user
+
+    @attended_adventures = @adventures.attending(current_user)
   end
 
   def show
