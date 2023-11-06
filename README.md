@@ -4,17 +4,14 @@
 * Adventure SHOW (as creator): reserving seats, removing characters, inviting via email.
 
 ## View Styling / Presentation
-* Adventure new/edit styling
 * Character new view / styling
 * Character show view / styling
 * User profile / show view styling
-* Adventure index view: Maintain filter / adventure alignment
 
 ## Nice-to-haves / polish
 * Login via username, not just email
 * Mobile view adjustments
 * Add cool parchment background to adventure show
-* Javascript/auth on adventure new/edit to check min/max level obey limits, description, title limits, etc
 
 ## Image Attribution
 <a href="https://www.freepik.com/free-vector/computer-games-colorful-elements-cartoon-set_4282638.htm#query=pixel%20art%20dungeon&position=16&from_view=search&track=ais">Image by macrovector</a> on Freepik

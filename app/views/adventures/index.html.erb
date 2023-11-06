@@ -39,9 +39,11 @@
     </div>
   <% end %>
   <div class="content">
-    <% if current_user %>
-      <%= button_to "NEW ADVENTURE", new_adventure_path, method: :get, class: 'btn' %>
-    <% end %>
+    <div class="button-container">
+      <% if current_user %>
+        <%= button_to "NEW ADVENTURE", new_adventure_path, method: :get, class: 'btn' %>
+      <% end %>
+    </div>
     <div class="adventure-content">
       <div class="adventure-list-title">Adventure List</div>
       <div class="adventure-list">

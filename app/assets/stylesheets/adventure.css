@@ -182,9 +182,10 @@
   margin-left: 10vw;
 }
 
-.adventure-index .content .button_to {
+.adventure-index .content .button-container {
   margin-right: 50px;
   margin-top: 80px;
+  min-width: 275px;
 }
 
 .adventure-index .content .adventure-content{
@@ -390,8 +391,11 @@
   border-width: 2px;
 }
 
-.adventure-new input[type="text"]{
-  max-width: 270px;
+.adventure .long{
+  max-width: 310px;
+  width: 310px;
+  min-width: 310px;
+  padding: 1px 2px;
 }
 
 .adventure-new .description,

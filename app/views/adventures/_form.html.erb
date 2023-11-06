@@ -4,12 +4,12 @@
   <div class="form-controls">
     <div class="form-item">
       <%= f.label :date %>
-      <%= f.datetime_local_field :date, class: 'form-control' %>
+      <%= f.datetime_local_field :date, class: 'form-control long' %>
     </div>
 
     <div class="form-item">
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control', maxlength: 40 %>
+      <%= f.text_field :name, class: 'form-control long', maxlength: 40 %>
     </div>
 
     <div class="form-item">
@@ -19,12 +19,12 @@
 
     <div class="form-item">
       <%= f.label :module %>
-      <%= f.text_field :module, class: 'form-control', maxlength: 40 %>
+      <%= f.text_field :module, class: 'form-control long', maxlength: 40 %>
     </div>
 
     <div class="form-item">
       <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control description', maxlength: 500 %>
+      <%= f.text_area :description, class: 'form-control description long', maxlength: 500 %>
     </div>
 
     <div class="form-item">
