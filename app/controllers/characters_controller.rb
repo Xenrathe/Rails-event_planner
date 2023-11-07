@@ -48,7 +48,7 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
     if current_user&.characters&.include?(@character)
       current_user.active_character = @character
-      redirect_to user_path(current_user)
+      redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "Cannot change another user's active char"
       redirect_to user_path(current_user), status: :unprocessable_entity

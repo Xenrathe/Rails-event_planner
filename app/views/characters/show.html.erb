@@ -1,13 +1,48 @@
-<div class="Show Character">
-  <h2> <%= @character.name %> </h2>
-  <%= render 'shared/ruleset_image', image_size: "400x200", character: @character %>
-  <h3>A level <%= @character.level %> <%= @character.gender %> <%= @character.race %> <%= @character.character_class %> </h3>
-  <p> <%= @character.backstory %>
+<% owner_mode = false %>
+<% if (current_user && @character.user_id == current_user.id) %>
+  <% owner_mode = true %>
+<% end %>
 
-  <h2>Adventures</h2>
-  <ul>
-  <% @character.attended_adventures.order(date: :desc).each do |adventure| %>
-    <li> <%= link_to adventure.name, adventure_path(adventure) %> on <%= adventure.date %>
-  <% end %>
-  </ul>
+<div class="character character-show">
+  <div class="main-title"><%= @character.name %></div>
+  <div class="content">
+    <div class="left-details">
+      <div class="portrait-and-user">
+        <%= image_tag "portraits/#{@character.portrait_path}", size: "200x200" %>
+        <div class="main-user">User: <%= link_to @character.user.username, user_path(@character.user) %> </div>
+      </div>
+      <div class="ruleset-image">
+        <%= render 'shared/ruleset_image', image_size: "200x100", character: @character %>
+      </div>
+    </div>
+    <div class="center-details">
+      <div class="character-details">
+        <div class="level-class">A level <%= @character.level %> <%= @character.gender %> <%= @character.race %> <%= @character.character_class %></div>
+        <br>
+        <div class="description"><%= @character.backstory %></div>
+      </div>
+        
+      <div class="adventure-details">
+        <% if @character.attended_adventures.count != 0 %>
+          <div class="adventure-list-title">Adventures</div>
+          <div class="adventure-list">
+            <% @character.attended_adventures.order(date: :desc).each do |adventure| %>
+              <%= render 'adventures/entry', adventure: adventure, attended_adventures: nil, mode: 'brief', rs_img: false %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if owner_mode %>
+      <div class="actions">
+          <% if @character.active_user_id != current_user.id %>
+          <%= button_to "Make Active", set_active_character_path(@character), class: 'btn small-btn', method: :patch, data: { turbo_method: :patch } %>
+          <% end %>
+          <%= button_to "Edit", edit_character_path(@character), class: 'btn small-btn', method: :get %>
+          <%= button_to "Delete", character_path(@character), class: 'btn small-btn', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this character?' } %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+

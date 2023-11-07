@@ -6,6 +6,7 @@
 ## View Styling / Presentation
 * Character new view / styling
 * Character show view / styling
+* Character edit view / styling
 * User profile / show view styling
 * If user signed in, displays active_character in the topbar
 

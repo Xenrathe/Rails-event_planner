@@ -7,7 +7,9 @@
 <% end %>
 
 <div class="adventure-entry <%= entry_class %>">
-  <%= render 'shared/ruleset_image', image_size: "100x50", adventure: adventure %>
+  <% if rs_img %>
+    <%= render 'shared/ruleset_image', image_size: "100x50", adventure: adventure %>
+  <% end %>
   <div class="title"><%= adventure.name %></div>
   <div class="details">
     <div class="detail"><b>Date:</b> <%= formatted_date(adventure.date) %></div> 

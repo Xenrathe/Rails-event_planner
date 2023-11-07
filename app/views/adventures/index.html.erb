@@ -48,7 +48,7 @@
       <div class="adventure-list-title">Adventure List</div>
       <div class="adventure-list">
         <% @adventures.each do |adventure|%>
-          <%= render 'entry', adventure: adventure, attended_adventures: @attended_adventures, mode: 'full' %>
+          <%= render 'entry', adventure: adventure, attended_adventures: @attended_adventures, mode: 'full', rs_img: true %>
         <% end %>
       </div>
     </div>

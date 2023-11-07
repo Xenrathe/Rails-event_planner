@@ -13,7 +13,7 @@
       <h2>Upcoming Adventures</h2>
       <div class="adventure-list">
       <% @adventures.each do |adventure| %>
-        <%= render 'entry', adventure: adventure, attended_adventures: @attended_adventures, mode: 'brief' %>
+        <%= render 'entry', adventure: adventure, attended_adventures: @attended_adventures, mode: 'brief', rs_img: true %>
       <% end %>
         <a href="<%= adventures_path %>">
           <div class="adventure-entry find-more">

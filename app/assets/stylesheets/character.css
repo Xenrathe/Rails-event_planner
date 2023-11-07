@@ -1,5 +1,16 @@
 .character {
   --img_size: 125px;
+
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  color: white;
+
+  padding: 10px;
+  background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("character-bg.jpeg");
+  background-size: 100% 120%;
+  background-repeat: no-repeat;
+  background-position-y: -100px;
 }
 
 .character #avatar-thumbnails-full {
@@ -45,4 +56,45 @@
 .character .avatar-thumbnail-img {
   width: var(--img_size);
   height: var(--img_size);
+}
+
+.character-show .main-title {
+  color: #82dbcf;
+}
+
+.character-show .content {
+  color: #aaece5; 
+}
+
+.character-show .left-details a {
+  color:rgb(23, 168, 194);
+}
+
+.character-show .portrait-and-user,
+.character-show .ruleset-image,
+.character-show .character-details {
+  border-color: rgb(23, 168, 194);
+  background-color: rgba(25, 72, 100, 0.61);
+}
+
+.character-show .center-details{
+  width: 570px;
+}
+
+.character-show .character-details{
+  max-width: 400px;
+  align-self: center;
+}
+
+.character-show .adventure-list-title{
+  font-family: 'metam';
+  font-size: 25px;
+  color: #b2e79a;
+  margin-left: 25px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.character-show .adventure-list {
+  overflow: auto;
 }

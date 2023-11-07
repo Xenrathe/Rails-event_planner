@@ -78,12 +78,17 @@ a {
   --bgc: #660a0a7c
 }
 
+.character .btn{
+  --c: #32b8bd;
+  --bgc: #0a3a667c;
+}
+
 .adventure-index .content .btn {
   --b: 2px;   /* border thickness */
   font-size: 25px;
 }
 
-.adventure .small-btn {
+.small-btn {
   --b: 1px;   /* border thickness */
   font-size: 18px;
 }
@@ -115,11 +120,168 @@ a {
   outline-offset: .05em;
 }
 
-.adventure .small-btn:hover{
+.small-btn:hover{
   outline-offset: .1em;
 }
 
 .btn:active{
   background: var(--c);
   color: #fff;
+}
+
+.adventure-show, .character-show {
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 50px;
+}
+
+.main-title {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'metam';
+}
+
+.content {
+ display: flex;
+ gap: 20px; 
+}
+
+.adventure-show .main-details, 
+.adventure-show .details, 
+.adventure-show .attendees-details,
+.adventure-new .form-controls,
+.adventure-edit .form-controls,
+.character-show .portrait-and-user,
+.character-show .ruleset-image,
+.character-show .character-details {
+  border-style: ridge;
+  border-width: 5px;
+  padding: 5px;
+}
+
+.adventure-show .main-details,
+.character-show .left-details,
+.character-show .portrait-and-user {
+  align-self: flex-start;
+  font-size: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 10px;
+}
+
+.adventure-show .details, 
+.adventure-show .attendees-details,
+.character-show .character-details {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+}
+
+.adventure-show .secondary-details,
+.character-show .center-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.adventure-show .secondary-details {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  gap: 15px;
+}
+
+.adventure-show .time,
+.adventure-show .attendees-title,
+.character-show .level-class {
+  align-self: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.adventure-show .description,
+.character-show .description {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.adventure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 10px;
+  max-width: 825px;
+  max-height: 50vh;
+}
+
+.adventure-show .actions,
+.character-show .actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.adventure-entry {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  min-height: 60px;
+  padding: 5px;
+
+  border: 2px solid #BD5532;
+  color: #db9882;
+  background-color: #29120b;
+}
+
+.creator-entry {
+  border: 2px solid #bbbd32;
+  color: #d5db82;
+  background-color: #29260b;
+}
+
+.attendee-entry,
+.character .adventure-entry {
+  border: 2px solid #7cbd32;
+  color: #aadb82;
+  background-color: #16290b;
+}
+
+.adventure-entry:hover {
+  border-color:#e7673c;
+  color: #db9882;
+  background-color: #3f1c11;
+}
+
+.creator-entry:hover {
+  border: 2px solid #dbdd46;
+  color: #d5db82;
+  background-color: #494418;
+}
+
+.attendee-entry:hover,
+.character .adventure-entry:hover {
+  border: 2px solid #9be04b;
+  color: #aadb82;
+  background-color: #274615;
+}
+
+.adventure-entry .title {
+  font-size: 25px;
+  width: 250px;
+}
+
+.adventure-entry .details {
+  display: flex;
+  flex-direction: column;
+}
+
+.adventure-entry .seats {
+  font-size: 21px;
+  margin-left: auto;
+  padding-right: 5px;
 }
