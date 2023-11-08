@@ -7,6 +7,10 @@
   flex-direction: column;
 }
 
+.adventure-intro {
+  color: white;
+}
+
 .adventure-intro .middle-content {
   display: flex;
   width: 100%;
@@ -158,54 +162,6 @@
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 10px;
-}
-
-.adventure-show .attendee {
-  margin: 5px;
-  position: relative;
-}
-
-.adventure-show .attendee-tooltip,
-.adventure-index .activechar-tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-.adventure-show .attendee-tooltip-text,
-.adventure-index .activechar-tooltip-text {
-  visibility: hidden;
-  min-width: 120px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.adventure-show .attendee:hover .attendee-tooltip-text,
-.adventure-index .activechar:hover .activechar-tooltip-text {
-  visibility: visible;
-  opacity: 1;
-}
-
-.adventure-show .attendee img {
-  border-style: solid;
-  border-color: rgba(194, 106, 23, 0.021);
-  border-width: 2px;
-}
-
-.adventure-show .attendee:hover img {
-  border-style: solid;
-  border-color:rgb(194, 106, 23);
-  border-width: 2px;
 }
 
 .adventure-new, .adventure-edit {

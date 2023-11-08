@@ -1,6 +1,7 @@
 .character {
   --img_size: 125px;
   --text_col: #aaece5;
+  --title_col: #82dbcf;
 }
 
 .character #avatar-thumbnails-full {
@@ -51,7 +52,7 @@
 .character-show .main-title,
 .character-edit .title,
 .character-new .title {
-  color: #82dbcf;
+  color: var(--title_col);
 }
 
 .character-show .content {

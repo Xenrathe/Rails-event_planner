@@ -71,11 +71,10 @@ a {
 /* END TOP BAR STYLING */
 
 /* BEGIN APP-WIDE NAMESPACE STYLING */
-.adventure, .character {
+.adventure, .character, .user {
   display: flex;
   align-items: center;
   flex-grow: 1;
-  color: white;
 
   padding: 10px;
   width: calc(100%-20px);
@@ -100,6 +99,10 @@ a {
 .character {
   --bg_grad: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("character-bg.jpeg");
 }
+
+.user {
+  --bg_grad: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)), url("user-bg.jpeg");
+}
 /* END APP-WIDE NAMESPACE STYLING */
 
 /* BEGIN APP-WIDE BUTTON STYLING */
@@ -120,7 +123,17 @@ a {
   --bgc: #0a3a667c;
 }
 
+.user .btn{
+  --c: #bc75dd;
+  --bgc: #660a577c;
+}
+
 .adventure-index .content .btn {
+  --b: 2px;   /* border thickness */
+  font-size: 25px;
+}
+
+.user-show .delete-btn {
   --b: 2px;   /* border thickness */
   font-size: 25px;
 }
@@ -128,6 +141,11 @@ a {
 .small-btn {
   --b: 1px;   /* border thickness */
   font-size: 18px;
+}
+
+.smaller-btn {
+  --b: 1px;   /* border thickness */
+  font-size: 15px;
 }
 
 .btn{
@@ -194,7 +212,9 @@ a {
 .character-show .ruleset-image,
 .character-show .character-details,
 .character-edit .form-controls,
-.character-new .form-controls {
+.character-new .form-controls,
+.user .main-details,
+.user .character-list {
   border-style: ridge;
   border-width: 5px;
   padding: 5px;
@@ -294,6 +314,12 @@ a {
   background-color: #16290b;
 }
 
+.user .adventure-entry {
+  border: 2px solid #bd329f;
+  color: #db82db;
+  background-color: #290b28;
+}
+
 .adventure-entry:hover {
   border-color:#e7673c;
   color: #db9882;
@@ -313,6 +339,12 @@ a {
   background-color: #274615;
 }
 
+.user .adventure-entry:hover {
+  border: 2px solid #df45bd;
+  color: #e99ce9;
+  background-color: #4b1949;
+}
+
 .adventure-entry .title {
   font-size: 25px;
   width: 250px;
@@ -329,3 +361,58 @@ a {
   padding-right: 5px;
 }
 /* END ADVENTURE ENTRY SHARED STYLING */
+
+/* BEGIN CHARACTER ENTRY SHARED STYLING */
+.character-entry {
+  margin: 5px;
+  position: relative;
+}
+
+.character-entry .active-char {
+  border: solid;
+  border-width: 2px;
+  border-color: rgb(255, 2, 108);
+}
+
+.character-tooltip,
+.adventure-index .activechar-tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.character-tooltip-text,
+.adventure-index .activechar-tooltip-text {
+  visibility: hidden;
+  min-width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.character-entry:hover .character-tooltip-text,
+.adventure-index .activechar:hover .activechar-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.character-entry img {
+  border-style: solid;
+  border-color: rgba(194, 106, 23, 0.021);
+  border-width: 2px;
+}
+
+.character-entry:hover img {
+  border-style: solid;
+  border-color:rgb(194, 106, 23);
+  border-width: 2px;
+}

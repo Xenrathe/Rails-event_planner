@@ -1,0 +1,16 @@
+<% extra_class = is_active_char ? " active-char" : "" %>
+
+<div class="character-entry">
+  <div class="character-tooltip">
+    <a href="<%= character_path(character) %>">
+      <%= image_tag "portraits/#{character.portrait_path}", size: img_size, class: "character-img#{extra_class}" %>
+    </a>
+    <span class="character-tooltip-text">
+      <b><%= character.name %></b><br>
+      <%= character.character_class %> - Lv.<%= character.level %>
+      <% if :creator_mode %>
+        (<%= character.user.email %>)
+      <% end %>
+    </span>
+  </div>
+</div>

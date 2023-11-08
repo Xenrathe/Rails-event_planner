@@ -1,81 +1,109 @@
-<div class="User">
-  <h1> <%= @user.username %> </h1>
-
-<% if current_user && current_user.id == @user.id %>
-  <%= form_for @user, url: { action: "update" }, method: :patch do |f| %>
-    <h2>Bio</h2>
-    <div class="field">
-      <%= f.text_area :bio, value: @user.bio %>
-    </div>
-    <h3>Timezone</h3>
-    <div class="field">
-      <%= f.time_zone_select :timezone %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Update" %>
-    </div>
+<% owner_mode = (current_user && @user.id == current_user.id) %>
+<% past_adventures = [] %>
+<% upcoming_adventures = [] %>
+<% @attendances.each do |attendance|%>
+  <% if attendance[1].date >= Date.today %>
+    <% upcoming_adventures << attendance[1] %>
+  <% else %>
+    <% past_adventures << attendance[1] %>
   <% end %>
-<% else %>
-  <h2>Bio</h2>
-  <p><%= @user.bio %></p>
-  <h3>Timezone</h3>
-  <p><%= @user.timezone %></p>
 <% end %>
 
-  <h2><%= @user.username %>'s Adventures</h2>
-
-  <h2>Created Adventures:</h2>
-  <ul>
-    <% @owned_adventures.each do |adventure|%>
-      <li> <%= link_to adventure.name, adventure_path(adventure) %>
-    <% end %>
-  </ul>
-
-  <% past_attendances = [] %>
-  <% upcoming_attendances = [] %>
-  <% @attendances.each do |attendance|%>
-    <% if attendance[1].date >= Date.today %>
-      <% upcoming_attendances << attendance %>
-    <% else %>
-      <% past_attendances << attendance %>
-    <% end %>
-  <% end %>
-
-  <h2>Upcoming Adventures:</h2>
-  <ul>
-    <% upcoming_attendances.each do |attendance|%>
-      <li> <%= attendance[1].name %> on <%= attendance[1].date %>, character: <%= attendance[0].name %>
-    <% end %>
-  </ul>
-
-  <h2>Past Adventures:</h2>
-  <ul>
-    <% past_attendances.each do |attendance|%>
-      <li> <%= attendance[1].name %> on <%= attendance[1].date %>, character: <%= attendance[0].name %>
-    <% end %>
-  </ul>
-
-  <h2><%= @user.username %>'s Characters
-  <% if current_user && current_user.id == @user.id %>
-    <%= link_to "(New Character)", new_character_path %>
-  <% end %></h2>
-  <ul>
-    <% @characters.each do |character|%>
-      <li> <%= link_to character.name, character_path(character) %>: A level <%= character.level %> <%= character.gender %> <%= character.race %> <%= character.character_class %> (<%= character.ruleset %>)
-      <% if character == @active_character %>
-        <br>[active]
-      <% else %>
-        <br><%= link_to "[set active]", set_active_character_path(character), method: :patch, data: { turbo_method: :patch } %>
-      <% end %> 
-      <% if current_user && current_user.id == @user.id %>
-        - <%= link_to "[edit]", edit_character_path(character) %>
+<div class="user user-show">
+  <div class="main-title"><%= @user.username %></div>
+  <div class="top-details">
+    <% if owner_mode %>
+      <%= button_to 'DELETE ACCOUNT', registration_path(current_user), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your account?' }, class: "btn delete-btn" %>
+      <%= form_for @user, url: { action: "update" }, method: :patch do |f| %>
+        <div class="main-details">
+          <div class="label">Bio</div>
+          <div class="form-item">
+            <%= f.text_area :bio, value: @user.bio, class: "form-control" %>
+          </div>
+          <div class="bottom">
+            <div class="form-item">
+              <div class="label">Timezone</div>
+              <%= f.time_zone_select :timezone, nil, {}, class: "form-control" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Update", class: "btn small-btn" %>
+            </div>
+          </div>
+        </div>
       <% end %>
-      </li>
+    <% else %>
+      <div class="main-details">
+        <div class="bio"><%= @user.bio %></div>
+        <div class="timezone"><span class="label">Timezone: </span> <%= @user.timezone %></div>
+      </div>
     <% end %>
-  </ul>
+  </div>
+  <div class="content">
+    <div class="left-characters">
+      <div class="title">Characters</div>
+      <div class="character-list">
+        <% @characters.each do |character| %>
+          <%= render 'shared/character_entry', character: character, is_active_char: (@active_character.id == character.id), creator_mode: false, img_size: "80x80" %>
+        <% end %>
+      </div>
+        
 
-  <% if current_user && current_user.id == @user.id %>
-    <%= link_to 'DELETE ACCOUNT', registration_path(current_user), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your account?' } %>
-  <% end %>
+      <!--
+        <% @characters.each do |character|%>
+          <li> <%= link_to character.name, character_path(character) %>: A level <%= character.level %> <%= character.gender %> <%= character.race %> <%= character.character_class %> (<%= character.ruleset %>)
+          <% if character == @active_character %>
+            <br>[active]
+          <% else %>
+            <br><%= link_to "[set active]", set_active_character_path(character), method: :patch, data: { turbo_method: :patch } %>
+          <% end %> 
+          <% if current_user && current_user.id == @user.id %>
+            - <%= link_to "[edit]", edit_character_path(character) %>
+          <% end %>
+          </li>
+        <% end %>
+      </div>
+      -->
 
+      <% if current_user && current_user.id == @user.id %>
+        <%= button_to "New Character", new_character_path, class: "btn small-btn" %>
+      <% end %>
+    </div>
+    <div class="right-adventures">
+      <div class="title">Adventures</div>
+      <div class="full-adventure-list">
+        <% if @owned_adventures.count != 0 %>
+        <div class="created-title adventures-title">Created</div>
+        <div class="created-adventure-details adventures-details">
+          <div class="adventure-list">
+            <% @owned_adventures.order(date: :desc).each do |adventure| %>
+              <%= render 'adventures/entry', adventure: adventure, attended_adventures: nil, mode: 'brief', rs_img: true %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+
+        <% if upcoming_adventures.count != 0 %>
+        <div class="upcoming-title adventures-title">Upcoming</div>
+        <div class="upcoming-adventure-details adventures-details">
+          <div class="adventure-list">
+            <% upcoming_adventures.sort_by { |adventure| adventure.date }.reverse.each do |adventure| %>
+              <%= render 'adventures/entry', adventure: adventure, attended_adventures: nil, mode: 'brief', rs_img: true %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+
+        <% if past_adventures.count != 0 %>
+        <div class="past-title adventures-title">Past</div>
+        <div class="past-adventure-details adventures-details">
+          <div class="adventure-list">
+            <% past_adventures.sort_by { |adventure| adventure.date }.reverse.each do |adventure| %>
+              <%= render 'adventures/entry', adventure: adventure, attended_adventures: nil, mode: 'brief', rs_img: true %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,115 @@
+.user {
+  flex-direction: column;
+  --text_col: #e4aaec;
+  --title_col: #d482db;
+
+  color: var(--text_col);
+}
+
+.user-show .main-title {
+  color: var(--title_col);
+  margin-bottom: 15px;
+}
+
+.user-show .title {
+  font-size: 20px;
+  font-family: "metam";
+}
+
+.user-show .top-details {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.user-show .top-details form {
+  display: flex;
+}
+
+.user-show .main-details {
+  min-width: 750px;
+}
+
+.user-show .bio,
+.user-show #user_bio {
+  min-width: 745px;
+  max-width: 745px;
+}
+
+.user-show #user_bio {
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.user .form-item {
+  font-size: 15px;
+  color: var(--text_col);
+}
+
+.user .form-item .form-control {
+  font-size: 15px;
+  color: var(--text_col);
+  background-color: #5e0a667c;
+}
+
+.user .form-item select option {
+  background: #510a66;
+}
+
+.user-show .label {
+  font-weight: bold;
+}
+
+.user-show .bio {
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
+
+.user-show .main-details .bottom {
+  display: flex;
+  gap: 150px;
+  justify-content: center;
+}
+
+.user .main-details, 
+.user .character-list{
+  border-color: rgb(166, 23, 194);
+  background-color: rgba(85, 25, 100, 0.61);
+}
+
+.user-show .left-characters {
+  display: flex;
+  flex-direction: column;
+}
+
+.user .character-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 300px;
+  min-width: 300px;
+}
+
+.user-show .left-characters form {
+  margin: 5px auto;
+}
+
+.user-show .right-adventures {
+  width: 700px;
+}
+
+.user-show .adventures-title {
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-show .full-adventure-list {
+  max-height: 500px;
+  overflow: auto;
+}
+
+.user-show .delete-btn {
+  max-height: 100px;
+}

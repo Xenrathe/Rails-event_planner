@@ -1,7 +1,4 @@
-<% owner_mode = false %>
-<% if (current_user && @character.user_id == current_user.id) %>
-  <% owner_mode = true %>
-<% end %>
+<% owner_mode = (current_user && @character.user_id == current_user.id) %>
 
 <div class="character character-show">
   <div class="main-title"><%= @character.name %></div>
