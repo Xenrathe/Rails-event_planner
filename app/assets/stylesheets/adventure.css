@@ -222,12 +222,6 @@
   padding: 15px;
 }
 
-.adventure-new hr,
-.adventure-edit hr {
-  width: 25%;
-  border-color: var(--text_col);
-}
-
 .adventure-new .form-item,
 .adventure-edit .form-item {
   gap: 10px;

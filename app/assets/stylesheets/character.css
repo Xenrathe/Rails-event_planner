@@ -1,5 +1,6 @@
 .character {
   --img_size: 125px;
+  --text_col: #aaece5;
 }
 
 .character #avatar-thumbnails-full {
@@ -47,12 +48,14 @@
   height: var(--img_size);
 }
 
-.character-show .main-title {
+.character-show .main-title,
+.character-edit .title,
+.character-new .title {
   color: #82dbcf;
 }
 
 .character-show .content {
-  color: #aaece5; 
+  color: var(--text_col); 
 }
 
 .character-show .left-details a {
@@ -61,7 +64,8 @@
 
 .character-show .portrait-and-user,
 .character-show .ruleset-image,
-.character-show .character-details {
+.character-show .character-details,
+.character .form-controls {
   border-color: rgb(23, 168, 194);
   background-color: rgba(25, 72, 100, 0.61);
 }
@@ -86,4 +90,72 @@
 
 .character-show .adventure-list {
   overflow: auto;
+}
+
+.character-new, .character-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.character-new .title,
+.character-edit .title  {
+    font-size: 45px;
+    font-family: "Metam";
+    margin-top: 15px;
+}
+
+.character-new .form-controls,
+.character-edit .form-controls{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 15px;
+}
+
+.character .form-item {
+  gap: 10px;
+  display: flex;
+  font-size: 18px;
+  color: var(--text_col);
+}
+
+.character .form-item .form-control {
+  font-size: 18px;
+  color: var(--text_col);
+  background-color: #0a3a667c;
+}
+
+.character .form-item select option {
+  background: #0a3a66;
+}
+
+.character .form-controls .backstory {
+  min-height: 200px;
+  max-width: 284px;
+  min-width: 284px;
+}
+
+.character .form-controls .avatar-main-btn {
+  margin-left: 10%;
+}
+
+.character label {
+  font-weight: bold;
+  min-width: 100px;
+}
+
+.character .field_with_errors {
+  min-width: 100px;
+}
+
+.character.field_with_errors .form-control{
+  border-style: solid;
+  border-color: red;
+  border-width: 2px;
+}
+
+.character-edit .actions,
+.character-new .actions {
+  margin-top: 5px;
 }

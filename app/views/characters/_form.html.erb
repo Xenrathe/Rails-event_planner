@@ -1,60 +1,74 @@
 <%= javascript_import_module_tag "custom/character_avatar" %>
 
 <%= form_for @character do |f| %>
-  <div class="field">
-    <%= f.label :ruleset %>
-    <%= f.select :ruleset, Character.rulesets.keys %>
-  </div>
+  <div class="form-controls">
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+    <div class="form-item">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', required: true, maxlength: 25  %>
+    </div>
 
-  <div class="field">
-    <%= f.label :gender %>
-    <%= f.select :gender, Character.genders.keys %>
-  </div>
+    <div class="form-item">
+      <%= f.label :ruleset %>
+      <%= f.select :ruleset, Character.rulesets.keys, {}, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :race %>
-    <%= f.text_field :race %>
-  </div>
+    <div class="form-item">
+      <%= f.label :gender %>
+      <%= f.select :gender, Character.genders.keys, {}, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :character_class %>
-    <%= f.text_field :character_class %>
-  </div>
+    <div class="form-item">
+      <%= f.label :race %>
+      <%= f.text_field :race, class: 'form-control', maxlength: 25 %>
+    </div>
 
-  <div class="field">
-    <%= f.label :level %>
-    <%= f.number_field :level, min: 0, max: 99 %>
-  </div>
+    <div class="form-item">
+      <%= f.label :class %>
+      <%= f.text_field :character_class, class: 'form-control', maxlength: 25 %>
+    </div>
 
-  <div class="field">
-    <%= f.label :backstory %>
-    <%= f.text_area :backstory %>
-  </div>
+    <div class="form-item">
+      <%= f.label :level %>
+      <%= f.number_field :level, min: 0, max: 99, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :avatar, "Avatar:" %>
-    <button type="button" id="show-avatars" class="avatar-main-btn">
-      <% if @character.nil? || @character.portrait_path.nil? %>
-        <% portrait_url = "female-fantasy-1.jpg" %>
-      <% else %>
-        <% portrait_url = "#{@character.portrait_path}" %>
-      <% end %>
-      <%= image_tag "portraits/#{portrait_url}", id: "avatar-thumbnail-main", class: "avatar-thumbnail-img", size: "150x150"%>
-    </button>
-    <%= f.hidden_field :portrait_path, id: "avatar-path", value: portrait_url %>
+    <div class="form-item">
+      <%= f.label :backstory %>
+      <%= f.text_area :backstory, class: 'form-control backstory', maxlength: 500 %>
+    </div>
+
+    <div class="form-item">
+      <%= f.label :avatar, "Avatar:" %>
+      <button type="button" id="show-avatars" class="avatar-main-btn form-control">
+        <% if @character.nil? || @character.portrait_path.nil? %>
+          <% portrait_url = "female-fantasy-1.jpg" %>
+        <% else %>
+          <% portrait_url = "#{@character.portrait_path}" %>
+        <% end %>
+        <%= image_tag "portraits/#{portrait_url}", id: "avatar-thumbnail-main", class: "avatar-thumbnail-img", size: "150x150"%>
+      </button>
+      <%= f.hidden_field :portrait_path, id: "avatar-path", value: portrait_url %>
+    </div>
   </div>
 
   <div class="actions">
     <% if base_action == 'new'%>
-      <%= f.submit "Create Character" %>
+      <%= f.submit "Create Character", class: "btn small-btn" %>
     <% else %>
-      <%= f.submit "Edit Character" %>
+      <%= f.submit "Edit Character", class: "btn small-btn" %>
     <% end %>
+  </div>
+<% end %>
+
+<% if @character.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
+    <ul>
+      <% @character.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
 

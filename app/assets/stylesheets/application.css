@@ -167,7 +167,7 @@ a {
 }
 /* END APP-WIDE BUTTON STYLING */
 
-/* BEGIN SHOW VIEW SHARED STYLING */
+/* BEGIN SHOW, EDIT, NEW VIEW SHARED STYLING */
 .adventure-show, .character-show {
   flex-direction: column;
   gap: 50px;
@@ -192,7 +192,9 @@ a {
 .adventure-edit .form-controls,
 .character-show .portrait-and-user,
 .character-show .ruleset-image,
-.character-show .character-details {
+.character-show .character-details,
+.character-edit .form-controls,
+.character-new .form-controls {
   border-style: ridge;
   border-width: 5px;
   padding: 5px;
@@ -249,7 +251,7 @@ a {
 }
 
 .adventure-show .actions,
-.character-show .actions {
+.character .actions {
   display: flex;
   gap: 10px;
   justify-content: center;
