@@ -1,16 +1,5 @@
 .character {
   --img_size: 125px;
-
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  color: white;
-
-  padding: 10px;
-  background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("character-bg.jpeg");
-  background-size: 100% 120%;
-  background-repeat: no-repeat;
-  background-position-y: -100px;
 }
 
 .character #avatar-thumbnails-full {

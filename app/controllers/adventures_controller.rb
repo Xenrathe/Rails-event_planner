@@ -50,7 +50,10 @@ class AdventuresController < ApplicationController
     end
 
     #Put in date order
-    @adventures = @adventures.order(date: :asc)
+    @adventures = @adventures.order(date: :asc).includes(:creator)
+
+    # Make a single database call for counts, for optimization purposes
+    @attendee_counts = AdventureAttendance.group(:attended_adventure_id).count
 
     return unless current_user
 

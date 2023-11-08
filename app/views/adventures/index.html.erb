@@ -31,11 +31,31 @@
       </div>
     </div>
 
-    <div class="form-buttons">
-      <%= button_tag 'Apply Filters', type: :submit, value: 'default', class: 'btn small-btn', name: 'filter' %>
+    <div class="side-buttons">
+      <div class="form-buttons">
+        <%= button_tag 'Apply Filters', type: :submit, value: 'default', class: 'btn small-btn', name: 'filter' %>
+        <% if current_user && current_user.active_character.present? %>
+          <%= button_tag 'Match Active', type: :submit, value: 'match', class: 'btn small-btn', name: 'filter' %>
+        <% end %>
+      </div>
+
       <% if current_user && current_user.active_character.present? %>
-        <%= button_tag 'Match Active', type: :submit, value: 'match', class: 'btn small-btn', name: 'filter' %>
+      <div class="activechar">
+        <div class="activechar-tooltip">
+          <a href="<%= character_path(current_user.active_character)%>">
+            <%= image_tag "portraits/#{current_user.active_character.portrait_path}", size: "80x80" %>
+          </a>
+          <span class="activechar-tooltip-text">
+            <b><%= current_user.active_character.name %></b>
+            <br>
+            <%= current_user.active_character.character_class %> - Lv.<%= current_user.active_character.level %>
+            <br>
+            Ruleset: <%= current_user.active_character.ruleset %>
+          </span>
+        </div>
+      </div>
       <% end %>
+
     </div>
   <% end %>
   <div class="content">
@@ -48,7 +68,7 @@
       <div class="adventure-list-title">Adventure List</div>
       <div class="adventure-list">
         <% @adventures.each do |adventure|%>
-          <%= render 'entry', adventure: adventure, attended_adventures: @attended_adventures, mode: 'full', rs_img: true %>
+          <%= render 'entry', adventure: adventure, attended_adventures: @attended_adventures, attendee_counts: @attendee_counts, mode: 'full', rs_img: true %>
         <% end %>
       </div>
     </div>

@@ -1,31 +1,10 @@
 .adventure {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  color: white;
-}
-
-.adventure-index, .adventure-intro {
-  flex-direction: column;
-}
-
-.adventure-index, .adventure-show {
-  padding: 10px;
-  background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("tavern-wide-bg.jpeg");
-  background-size: 100% 120%;
-  background-repeat: no-repeat;
-  background-position-y: -100px;
-
   --text_col: #bda332;
   --bg_col: #660a0a7c;
 }
 
-.adventure-intro {
-  width: 100%;
-  background: linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)), url("tavern-wide-bg.jpeg");
-  background-size: 100% 120%;
-  background-repeat: no-repeat;
-  background-position-y: -100px;
+.adventure-index, .adventure-intro {
+  flex-direction: column;
 }
 
 .adventure-intro .middle-content {
@@ -68,10 +47,16 @@
   gap: 10px;
 }
 
+.adventure-index .side-buttons {
+  display: flex;
+  gap: 10px;
+}
+
 .adventure-index .form-buttons{
   display: flex;
   flex-direction: column;
   gap: 4px;
+
   align-self: center;
 }
 
@@ -180,13 +165,15 @@
   position: relative;
 }
 
-.adventure-show .attendee-tooltip {
+.adventure-show .attendee-tooltip,
+.adventure-index .activechar-tooltip {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
 }
 
-.adventure-show .attendee-tooltip-text {
+.adventure-show .attendee-tooltip-text,
+.adventure-index .activechar-tooltip-text {
   visibility: hidden;
   min-width: 120px;
   background-color: #333;
@@ -203,7 +190,8 @@
   transition: opacity 0.3s;
 }
 
-.adventure-show .attendee:hover .attendee-tooltip-text {
+.adventure-show .attendee:hover .attendee-tooltip-text,
+.adventure-index .activechar:hover .activechar-tooltip-text {
   visibility: visible;
   opacity: 1;
 }
@@ -221,15 +209,6 @@
 }
 
 .adventure-new, .adventure-edit {
-  padding: 10px;
-  background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("adventure-start-bg.jpeg");
-  background-size: 100% 120%;
-  background-repeat: no-repeat;
-  background-position-y: -100px;
-
-  --text_col: #bda332;
-  --bg_col: #660a0a7c;
-
   display: flex;
   flex-direction: column;
   gap: 10px;

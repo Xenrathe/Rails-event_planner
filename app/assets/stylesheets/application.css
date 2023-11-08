@@ -14,7 +14,8 @@
  *= require_self
  */
 
- @font-face {
+ /* BEGIN FONT ADDITIONS */
+@font-face {
   font-family: 'Sidhe Noble';
   src: url('/assets/SidheNoble.ttf');
   font-weight: normal;
@@ -27,6 +28,7 @@
   font-weight: normal;
   font-style: normal;
 }
+/* END FONT ADDITIONS */
 
 body {
   margin: 0px;
@@ -35,6 +37,7 @@ body {
   flex-flow: column;
 }
 
+  /* BEGIN TOP BAR STYLING */
 .top-bar {
   display: flex;
   flex-direction: column;
@@ -65,7 +68,41 @@ a {
   display: flex;
   gap: 10px;
 }
+/* END TOP BAR STYLING */
 
+/* BEGIN APP-WIDE NAMESPACE STYLING */
+.adventure, .character {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  color: white;
+
+  padding: 10px;
+  width: calc(100%-20px);
+  background: var(--bg_grad);
+  background-size: 100% 120%;
+  background-repeat: no-repeat;
+  background-position-y: -100px;
+}
+
+.adventure-intro {
+  --bg_grad: linear-gradient(rgba(0,0,0,.85), rgba(0,0,0,.85)), url("tavern-wide-bg.jpeg");
+}
+
+.adventure-index, .adventure-show {
+  --bg_grad: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("tavern-wide-bg.jpeg");
+}
+
+.adventure-new, .adventure-edit {
+  --bg_grad: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("adventure-start-bg.jpeg");
+}
+
+.character {
+  --bg_grad: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)), url("character-bg.jpeg");
+}
+/* END APP-WIDE NAMESPACE STYLING */
+
+/* BEGIN APP-WIDE BUTTON STYLING */
 .top-bar .btn {
   --b: 3px;   /* border thickness */
   --c: #BD5532;
@@ -128,7 +165,9 @@ a {
   background: var(--c);
   color: #fff;
 }
+/* END APP-WIDE BUTTON STYLING */
 
+/* BEGIN SHOW VIEW SHARED STYLING */
 .adventure-show, .character-show {
   flex-direction: column;
   gap: 50px;
@@ -209,6 +248,15 @@ a {
   padding-right: 5%;
 }
 
+.adventure-show .actions,
+.character-show .actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+/* END SHOW VIEW SHARED STYLING */
+
+/* BEGIN ADVENTURE ENTRY SHARED STYLING */
 .adventure-list {
   display: flex;
   flex-direction: column;
@@ -216,13 +264,6 @@ a {
   padding-right: 10px;
   max-width: 825px;
   max-height: 50vh;
-}
-
-.adventure-show .actions,
-.character-show .actions {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
 }
 
 .adventure-entry {
@@ -285,3 +326,4 @@ a {
   margin-left: auto;
   padding-right: 5px;
 }
+/* END ADVENTURE ENTRY SHARED STYLING */
