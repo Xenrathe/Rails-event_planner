@@ -8,7 +8,7 @@
     <span class="character-tooltip-text">
       <b><%= character.name %></b><br>
       <%= character.character_class %> - Lv.<%= character.level %>
-      <% if :creator_mode %>
+      <% if creator_mode %>
         (<%= character.user.email %>)
       <% end %>
     </span>

@@ -123,9 +123,14 @@ a {
   --bgc: #0a3a667c;
 }
 
-.user .btn{
+.user-show .btn{
   --c: #bc75dd;
   --bgc: #660a577c;
+}
+
+.user-devise .btn {
+  --c: #BD5532;
+  --bgc: #0000;
 }
 
 .adventure-index .content .btn {
@@ -203,20 +208,9 @@ a {
  gap: 20px; 
 }
 
-.adventure-show .main-details, 
-.adventure-show .details, 
-.adventure-show .attendees-details,
-.adventure-new .form-controls,
-.adventure-edit .form-controls,
-.character-show .portrait-and-user,
-.character-show .ruleset-image,
-.character-show .character-details,
-.character-edit .form-controls,
-.character-new .form-controls,
-.user .main-details,
-.user .character-list {
+.ridge-border{
   border-style: ridge;
-  border-width: 5px;
+  border-width: 8px;
   padding: 5px;
 }
 

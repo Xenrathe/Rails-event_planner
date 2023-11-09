@@ -15,7 +15,7 @@
     <% if owner_mode %>
       <%= button_to 'DELETE ACCOUNT', registration_path(current_user), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your account?' }, class: "btn delete-btn" %>
       <%= form_for @user, url: { action: "update" }, method: :patch do |f| %>
-        <div class="main-details">
+        <div class="main-details ridge-border">
           <div class="label">Bio</div>
           <div class="form-item">
             <%= f.text_area :bio, value: @user.bio, class: "form-control" %>
@@ -32,7 +32,7 @@
         </div>
       <% end %>
     <% else %>
-      <div class="main-details">
+      <div class="main-details ridge-border">
         <div class="bio"><%= @user.bio %></div>
         <div class="timezone"><span class="label">Timezone: </span> <%= @user.timezone %></div>
       </div>
@@ -41,9 +41,9 @@
   <div class="content">
     <div class="left-characters">
       <div class="title">Characters</div>
-      <div class="character-list">
+      <div class="character-list ridge-border">
         <% @characters.each do |character| %>
-          <%= render 'shared/character_entry', character: character, is_active_char: (@active_character.id == character.id), creator_mode: false, img_size: "80x80" %>
+          <%= render 'shared/character_entry', character: character, is_active_char: (!@active_character.nil? && @active_character.id == character.id), creator_mode: false, img_size: "80x80" %>
         <% end %>
       </div>
         

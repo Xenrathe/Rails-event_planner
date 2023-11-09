@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def show
     @character = Character.find(params[:id])
@@ -53,6 +53,20 @@ class CharactersController < ApplicationController
       flash[:alert] = "Cannot change another user's active char"
       redirect_to user_path(current_user), status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @character = Character.find(params[:id])
+    if current_user && current_user.id == @character.user_id
+      if @character.destroy
+        flash[:notice] = 'Character was successfully deleted.'
+      else
+        flash[:alert] = 'Failed to delete the character.'
+      end
+    else
+      flash[:alert] = "Only character's user can delete"
+    end
+    redirect_to user_path(current_user)
   end
 
   private

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show, :update]
 
-  resources :characters, only: [:show, :new, :create, :edit, :update] do
+  resources :characters, only: [:show, :new, :create, :edit, :update, :destroy] do
     member do
       patch 'set_active'
     end

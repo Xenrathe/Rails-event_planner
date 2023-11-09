@@ -1,12 +1,19 @@
 .user {
   flex-direction: column;
-  --text_col: #e4aaec;
-  --title_col: #d482db;
-
   color: var(--text_col);
 }
 
-.user-show .main-title {
+.user-show {
+  --text_col: #e4aaec;
+  --title_col: #d482db;
+}
+
+.user-devise {
+  --text_col: #d47b5d;
+  --title_col: #db9882;
+}
+
+.user .main-title {
   color: var(--title_col);
   margin-bottom: 15px;
 }
@@ -49,11 +56,35 @@
 .user .form-item .form-control {
   font-size: 15px;
   color: var(--text_col);
+}
+
+.user-show .form-item .form-control {
   background-color: #5e0a667c;
 }
 
-.user .form-item select option {
+.user-show .form-item select option {
   background: #510a66;
+}
+
+.user-devise .form-item .form-control {
+  background-color: #66460a7c;
+}
+
+.user-devise input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #573b08 inset; /* Adjust 'white' to your background color */
+  -webkit-text-fill-color: var(--text_col); /* Set the text color */
+}
+
+/* Override styles for autofilled inputs */
+.user-devise input:-webkit-autofill,
+.user-devise input:-webkit-autofill:focus {
+  background: #66460a7c;
+  background-color: #66460a7c; /* Set your desired background color */
+  color: var(--text_col); /* Set your desired text color */
+}
+
+.user-devise .form-item select option {
+  background: #66490a;
 }
 
 .user-show .label {
@@ -71,10 +102,14 @@
   justify-content: center;
 }
 
-.user .main-details, 
-.user .character-list{
+.user-show .ridge-border {
   border-color: rgb(166, 23, 194);
   background-color: rgba(85, 25, 100, 0.61);
+}
+
+.user-devise .ridge-border {
+  border-color: var(--text_col);
+  background-color: rgba(100, 61, 25, 0.61);
 }
 
 .user-show .left-characters {
@@ -113,3 +148,65 @@
 .user-show .delete-btn {
   max-height: 100px;
 }
+
+.user-devise .form-div {
+  padding: 8px;
+}
+
+.user-devise form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user-devise form label {
+  font-weight: bold;
+}
+
+.user .form-item .form-check-box {
+  accent-color: #ac65237c;
+}
+
+.user-new .form-item {
+  display: flex;
+}
+
+.user-new #user_bio {
+  max-width: 200px;
+  min-width: 200px;
+  min-height: 100px;
+}
+
+.user-new form label,
+.user-new form .field_with_errors {
+  min-width: 80px;
+  width: 80px;
+}
+
+.user-new form .field_with_errors .form-control {
+  border: solid 2px rgba(255, 0, 0, 0.801);
+}
+
+.user-devise form .btn {
+  align-self: center;
+  width: 80%;
+}
+
+.user .devise-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.user .devise-actions .btn {
+  width: 115px;
+  height: 45px;
+}
+
+.user-devise .error-messages {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+

@@ -160,7 +160,7 @@ adventure_descriptions = [
 14.times do |i|
   user = User.new(
     email: "user#{i + 1}@example.com",
-    password: "password",
+    password: "passwordDEF",
     birthdate: Date.today - (21 + i).years,
     bio: bios[i],
     username: usernames[i]

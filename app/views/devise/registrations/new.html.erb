@@ -1,26 +1,42 @@
-<div class="Registrations">
-  <h2>Sign up</h2>
+<div class="user user-new user-devise">
+  <div class="main-title">Sign Up</div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="ridge-border">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control' %>
+      <div class="form-item">
+        <%= f.label :email %>
+        <%= f.email_field :email, required: true, class: 'form-control' %>
+      </div>
 
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+      <div class="form-item">
+        <%= f.label :password %>
+        <%= f.password_field :password, required: true, class: 'form-control' %>
+      </div>
 
-    <%= f.label :birthdate %>
-    <%= f.date_field :birthdate, class: 'form-control' %>
+      <div class="form-item">
+        <%= f.label :username %>
+        <%= f.text_field :username, required: true, class: 'form-control' %>
+      </div>
 
-    <%= f.label :username %>
-    <%= f.text_field :username, class: 'form-control' %>
+      <div class="form-item">
+        <%= f.label :birthdate %>
+        <%= f.date_field :birthdate, class: 'form-control' %>
+      </div>
 
-    <%= f.label :bio %>
-    <%= f.text_area :bio, class: 'form-control', placeholder: 'Can be edited later' %>
+      <div class="form-item">
+        <%= f.label :bio %>
+        <%= f.text_area :bio, class: 'form-control', placeholder: 'Can be edited later' %>
+      </div>
 
-    <%= f.submit 'Sign up', class: 'btn btn-primary' %>
-  <% end %>
+      <%= f.submit 'Sign up', class: 'btn small-btn' %>
+    <% end %>
+  </div>
 
-  <%= render 'devise/shared/links' %>
+  <div class="devise-actions">
+    <%= button_to "SIGN IN", new_user_session_path, method: :get, class: "btn smaller-btn" %>
+    <%= button_to "FORGOT PASSWORD", new_user_password_path, method: :get, class: "btn smaller-btn" %>
+  </div>
+
+  <%= render "devise/shared/error_messages", resource: resource %>
 </div>

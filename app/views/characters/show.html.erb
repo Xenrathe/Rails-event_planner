@@ -4,16 +4,16 @@
   <div class="main-title"><%= @character.name %></div>
   <div class="content">
     <div class="left-details">
-      <div class="portrait-and-user">
+      <div class="portrait-and-user ridge-border">
         <%= image_tag "portraits/#{@character.portrait_path}", size: "200x200" %>
         <div class="main-user">User: <%= link_to @character.user.username, user_path(@character.user) %> </div>
       </div>
-      <div class="ruleset-image">
+      <div class="ruleset-image ridge-border">
         <%= render 'shared/ruleset_image', image_size: "200x100", character: @character %>
       </div>
     </div>
     <div class="center-details">
-      <div class="character-details">
+      <div class="character-details ridge-border">
         <div class="level-class">A level <%= @character.level %> <%= @character.gender %> <%= @character.race %> <%= @character.character_class %></div>
         <br>
         <div class="description"><%= @character.backstory %></div>
