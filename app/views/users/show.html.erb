@@ -65,7 +65,7 @@
       -->
 
       <% if current_user && current_user.id == @user.id %>
-        <%= button_to "New Character", new_character_path, class: "btn small-btn" %>
+        <%= button_to "New Character", new_character_path, method: :get, class: "btn small-btn" %>
       <% end %>
     </div>
     <div class="right-adventures">

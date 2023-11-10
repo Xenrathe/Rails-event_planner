@@ -14,21 +14,6 @@
  *= require_self
  */
 
- /* BEGIN FONT ADDITIONS */
-@font-face {
-  font-family: 'Sidhe Noble';
-  src: url('/assets/SidheNoble.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Metam';
-  src: url('/assets/Metamorphous.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-/* END FONT ADDITIONS */
 
 body {
   margin: 0px;
