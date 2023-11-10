@@ -2,7 +2,7 @@
 
 ## TableTop Tavern, an event and scheduling app for tabletop RPGs
 
-![Screenshot of the intro page](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-intro.jpg?raw=true)
+![Screenshot of the intro page](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-Intro.jpg?raw=true)
 
 ### Primary:
 
@@ -12,7 +12,7 @@ Please note that TableTop Tavern is a portfolio showpiece in its current form. I
 
 TableTop Tavern is active on fly.io: (https://tabletop-tavern.fly.dev/)
 
-![Screenshot of the index page](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-index.jpg?raw=true)
+![Screenshot of the index page](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-Index.jpg?raw=true)
 
 ### Features:
 * User registration, login via Devise gem
@@ -22,7 +22,7 @@ TableTop Tavern is active on fly.io: (https://tabletop-tavern.fly.dev/)
 * Validation both client and server-side across all views and models
 * All CSS written by hand
   
-![Screenshot of the character creation page](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-NewCharacter.png?raw=true)
+![Screenshot of the character creation page](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-NewCharacter.jpg?raw=true)
 
 ### Future to-do list
 * Adjustments for mobile view & responsiveness
