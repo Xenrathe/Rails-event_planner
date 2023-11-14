@@ -34,9 +34,14 @@ TableTop Tavern is active on fly.io: (https://tabletop-tavern.fly.dev/)
 * Adventure SHOW (as creator): reserving seats, removing characters, inviting via email.
 * Omni-Auth integration
 
+### Design Brief
+This project was created as part of The Odin Project curriculum, expanding on the <a href="https://www.theodinproject.com/lessons/ruby-on-rails-private-events">Private Events</a> project.
+
 ### Image Attribution
 <a href="https://www.pexels.com/photo/close-up-of-wooden-plank-326311/">Wooden BG</a> on Pexels
 
 <a href="https://mythjourneys.com/gallery/dungeons-and-dragons/free-dnd-character-art/">Free DnD portraits</a> on Mythjourneys
+
+(Other images are AI generated)
 
 ![Screenshot of the avatar selection](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-AvatarSelection.jpg?raw=true)
