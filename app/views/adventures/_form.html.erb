@@ -1,15 +1,15 @@
-<%= javascript_import_module_tag "custom/adventure_form" %>
+<!-- <%= javascript_import_module_tag "custom/adventure_form" %> -->
 
-<%= form_for @adventure do |f| %>
+<%= form_for @adventure, html: {'data-controller' => 'adventure-form'} do |f| %>
   <div class="form-controls ridge-border">
     <div class="form-item">
       <%= f.label :date %>
-      <%= f.datetime_local_field :date, class: 'form-control long' %>
+      <%= f.datetime_local_field :date, :data => { :adventure_form_target => "date" }, class: 'form-control long', required: true %>
     </div>
 
     <div class="form-item">
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control long', maxlength: 40 %>
+      <%= f.text_field :name, class: 'form-control long', maxlength: 40, required: true %>
     </div>
 
     <div class="form-item">
@@ -24,7 +24,7 @@
 
     <div class="form-item">
       <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control description long', maxlength: 500 %>
+      <%= f.text_area :description, class: 'form-control description long', maxlength: 500, required: true %>
     </div>
 
     <div class="form-item">
@@ -34,19 +34,19 @@
 
     <div class="form-item">
       <%= f.label :max_seats %>
-      <%= f.number_field :max_seats, in: 1..10, class: 'form-control' %>
+      <%= f.number_field :max_seats, in: 1..10, class: 'form-control', required: true %>
     </div>
 
     <div class="form-item">
       <%= f.label :min_age %>
-      <%= f.number_field :min_age, in: 0..99, class: 'form-control' %>
+      <%= f.number_field :min_age, in: 0..99, class: 'form-control', required: true %>
     </div>
 
     <div class="form-item">
       <%= f.label "Level: " %>
-      <%= f.number_field :min_level, in: 0..99, class: 'form-control' %>
+      <%= f.number_field :min_level, in: 1..99, :data => { :adventure_form_target => "min" }, class: 'form-control', required: true %>
       to
-      <%= f.number_field :max_level, in: 1..99, class: 'form-control' %>
+      <%= f.number_field :max_level, in: 1..99, :data => { :adventure_form_target => "max" }, class: 'form-control', required: true %>
     </div>
 
     <div class="form-item">
@@ -62,7 +62,7 @@
 
   <div class="form-item">
     <% button_text = mode == 'new' ? 'Create Adventure' : 'Update Adventure' %>
-    <%= f.submit button_text, class: 'btn small-btn' %>
+    <%= f.submit button_text, :data => { :action => "click->adventure-form#validate" }, class: 'btn small-btn' %>
   </div>
 <% end %>
 

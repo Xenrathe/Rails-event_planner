@@ -187,11 +187,13 @@
 .adventure-edit label {
   font-weight: bold;
   min-width: 100px;
+  width: 100px;
 }
 
 .adventure-new .field_with_errors,
 .adventure-edit .field_with_errors {
-  min-width: 100px;
+  display: flex;
+  min-width: 67px;
 }
 
 .adventure-new .field_with_errors .form-control,

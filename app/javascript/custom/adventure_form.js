@@ -1,6 +1,5 @@
 function initializeFunctions() 
 {
-
   const form = document.querySelector('.adventure form'); // Select the form element
   console.log(form);
 
