@@ -2,6 +2,7 @@ class Adventure < ApplicationRecord
   include Enums
 
   belongs_to :creator, class_name: "User"
+  has_many :messages
   has_many :adventure_attendances, foreign_key: :attended_adventure_id, dependent: :destroy
   has_many :attendees, through: :adventure_attendances, source: :adventure_attendee
 

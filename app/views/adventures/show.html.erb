@@ -62,10 +62,44 @@
             <%= button_to "Edit", edit_adventure_path(@adventure), class: 'btn small-btn', method: :get %>
             <%= button_to "Delete", adventure_path(@adventure), class: 'btn small-btn', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this adventure?' } %>
           <% end %>
+        </div>
 
       <% else %>
         <div class="details">Adventure is currently marked private</div>
       <% end %>
     </div>
+    <% if current_user && (creator_mode || attending) %>
+    <div class="chat">
+      <div id="message-display">
+        <% @messages.each do |message| %>
+          <div class="message">
+              <%= message.username %>: <%= message.body %>
+          </div>
+        <% end %>
+      </div>
+      <div id="message-form">
+        <%= form_with model: [@adventure, @message] do |f| %>
+          <div class="field has-addons">
+            <div class="control">
+              <%= f.text_field :body, id: 'message-input', class: 'input' %>
+            </div>
+            <div class="control">
+              <%= f.submit 'Send Message', class: 'button is-primary' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+          <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 </div>

@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resources :adventures, only: [:index, :new, :create, :show, :edit, :update, :destroy ] do
+    resources :messages, only: [:create]
     member do
       post 'attend'
     end
   end
-
   get 'adventures/intro', to: 'adventures#intro'
   
   resources :users, only: [:show, :update]

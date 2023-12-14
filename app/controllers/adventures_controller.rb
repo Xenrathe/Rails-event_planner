@@ -66,6 +66,12 @@ class AdventuresController < ApplicationController
     return unless current_user
 
     @attended_adventures = Adventure.attending(current_user)
+
+    # Only adventure creator and attending users can actually see or post messages in chat
+    return unless @adventure.creator_id == current_user.id || @attended_adventures.exists?(@adventure.id)
+
+    @message = Message.new
+    @messages = @adventure.messages
   end
 
   def edit
