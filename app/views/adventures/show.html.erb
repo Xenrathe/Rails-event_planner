@@ -69,8 +69,8 @@
       <% end %>
     </div>
     <% if current_user && (creator_mode || attending) %>
-    <div class="chat">
-      <div id="message-display">
+    <div class="chat" data-controller="chat">
+      <div id="message-display" data-chat-target="chatbox">
         <% @messages.each do |message| %>
           <div class="message">
               <%= message.username %>: <%= message.body %>
@@ -84,6 +84,7 @@
               <%= f.text_field :body, id: 'message-input', class: 'input' %>
             </div>
             <div class="control">
+              <%= f.hidden_field :adventure_id, id: 'adventure-id', value: @adventure.id %>
               <%= f.submit 'Send Message', class: 'button is-primary' %>
             </div>
           </div>

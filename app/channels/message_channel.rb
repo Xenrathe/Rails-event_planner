@@ -1,6 +1,13 @@
 class MessageChannel < ApplicationCable::Channel
   def subscribed
-    stream_from 'message'
+    @adventure = Adventure.find(params[:room])
+
+    if allowed_to_subscribe?
+      stream_for @adventure
+    else
+      puts "Rejecting connection"
+      reject_unauthorized_connection
+    end
   end
 
   def unsubscribed
@@ -8,7 +15,14 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    ActionCable.server.broadcast('message', data)
+    adventure = Adventure.find(params[:room])
+    MessageChannel.broadcast_to(adventure, data)
+  end
+
+  private
+
+  def allowed_to_subscribe?
+    @adventure.creator_id == current_user.id || Adventure.attending(current_user).exists?(@adventure.id)
   end
 
 end
