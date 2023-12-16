@@ -3,6 +3,11 @@
   --bg_col: #660a0a7c;
 }
 
+.adventure .colored {
+  border-color: rgb(194, 106, 23);
+  background-color: rgba(100, 61, 25, 0.61);
+}
+
 .adventure-index, .adventure-intro {
   flex-direction: column;
 }
@@ -136,13 +141,36 @@
   color: #e69122;
 }
 
-.adventure-show .main-details, 
-.adventure-show .details, 
-.adventure-show .attendees-details,
-.adventure-new .form-controls,
-.adventure-edit .form-controls {
-  border-color: rgb(194, 106, 23);
-  background-color: rgba(100, 61, 25, 0.61);
+.adventure-show .chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  max-width: 250px;
+  min-width: 250px;
+  width: 250px;
+  max-height: 325px;
+  min-height: 325px;
+  height: 325px;
+}
+
+.adventure-show .chat #message-display {
+  overflow-y: auto;
+  max-height: 80%;
+}
+
+.adventure-show .chat hr {
+  border-color: #e69122;
+  width: 95%;
+}
+
+.adventure-show .chat #message-input,
+.adventure-show .chat .btn {
+  margin: 2px auto;
+}
+
+.adventure-show .chat #message-input {
+  width: 90%;
 }
 
 .adventure-show .main-title {
