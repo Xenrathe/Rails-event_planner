@@ -1,4 +1,4 @@
-import consumer from "./consumer"
+import consumer from "channels/consumer"
 //NOTE: MOVED THIS OVER TO A STIMULUS CONTROLLER (chat_controller.js)
 /* 
 console.log("message_channel is called");

@@ -20,6 +20,7 @@ TableTop Tavern is active on fly.io: (https://tabletop-tavern.fly.dev/)
 * Ability to create, edit, and delete adventures
 * Ability to create, edit, and delete characters who can 'attend' adventures (via a AdventureAttendance through-model / join-table)
 * Validation both client and server-side across all views and models
+* Real-time chat-rooms for the participants of each adventure (uses Redis server for production)
 * All CSS written by hand
   
 ![Screenshot of the character creation page](https://github.com/Xenrathe/Rails-event_planner/blob/main/TTT-NewCharacter.jpg?raw=true)
@@ -28,7 +29,6 @@ TableTop Tavern is active on fly.io: (https://tabletop-tavern.fly.dev/)
 * Adjustments for mobile view & responsiveness
 * Login via username, not just email
 * Add parchment background to adventure show
-* Adventure-centric chatroom
 * Auto-mailer integration
 * Clean up / organize CSS
 * Adventure SHOW (as creator): reserving seats, removing characters, inviting via email.
